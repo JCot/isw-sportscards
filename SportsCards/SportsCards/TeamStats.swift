@@ -14,4 +14,16 @@ class TeamStats: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var team: NSSet
 
+    class func createInContext(context: NSManagedObjectContext, name: String) -> TeamStats {
+        let newStat = NSEntityDescription.insertNewObjectForEntityForName("Team", inManagedObjectContext: context) as! TeamStats
+        newStat.name = name
+        return newStat
+    }
+    
+    class func getFromContext(context: NSManagedObjectContext) -> [TeamStats]? {
+        let fetchRequest = NSFetchRequest(entityName: "TeamStats")
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        return context.executeFetchRequest(fetchRequest, error: nil) as? [TeamStats]
+    }
 }

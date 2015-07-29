@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF701B6919A8002E256C /* AppDelegate.swift */; };
 		4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */; };
-		4CDAEF761B6919A8002E256C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF751B6919A8002E256C /* ViewController.swift */; };
 		4CDAEF791B6919A8002E256C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF771B6919A8002E256C /* Main.storyboard */; };
 		4CDAEF7B1B6919A8002E256C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7A1B6919A8002E256C /* Images.xcassets */; };
 		4CDAEF7E1B6919A8002E256C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */; };
@@ -22,6 +21,7 @@
 		5B3829A41B6954B9006E54F7 /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829A31B6954B9006E54F7 /* RoundedRectButton.swift */; };
 		5B3829A71B6954DB006E54F7 /* AthleteListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829A51B6954DB006E54F7 /* AthleteListTableViewController.swift */; };
 		5B3829A81B6954DB006E54F7 /* TeamInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */; };
+		5B3829AC1B6965C7006E54F7 /* EditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		4CDAEF6F1B6919A8002E256C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CDAEF701B6919A8002E256C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CDAEF731B6919A8002E256C /* SportsCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportsCards.xcdatamodel; sourceTree = "<group>"; };
-		4CDAEF751B6919A8002E256C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4CDAEF781B6919A8002E256C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4CDAEF7A1B6919A8002E256C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4CDAEF7D1B6919A8002E256C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		5B3829A31B6954B9006E54F7 /* RoundedRectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
 		5B3829A51B6954DB006E54F7 /* AthleteListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteListTableViewController.swift; sourceTree = "<group>"; };
 		5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamInfoViewController.swift; sourceTree = "<group>"; };
+		5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,12 +95,11 @@
 		4CDAEF6D1B6919A8002E256C /* SportsCards */ = {
 			isa = PBXGroup;
 			children = (
-				5B3829A51B6954DB006E54F7 /* AthleteListTableViewController.swift */,
-				5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */,
 				5B3829A01B695463006E54F7 /* UI */,
 				4CDAEF701B6919A8002E256C /* AppDelegate.swift */,
-				4CDAEF751B6919A8002E256C /* ViewController.swift */,
 				4CDAEF771B6919A8002E256C /* Main.storyboard */,
+				5B3829A51B6954DB006E54F7 /* AthleteListTableViewController.swift */,
+				5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */,
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
 				4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */,
@@ -143,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3829A31B6954B9006E54F7 /* RoundedRectButton.swift */,
+				5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -248,9 +248,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDAEFA41B6935D1002E256C /* TeamStats.swift in Sources */,
-				4CDAEF761B6919A8002E256C /* ViewController.swift in Sources */,
 				4CDAEFA61B6935D1002E256C /* Team.swift in Sources */,
 				4CDAEFA01B6935D0002E256C /* AthleteStats.swift in Sources */,
+				5B3829AC1B6965C7006E54F7 /* EditableTableViewCell.swift in Sources */,
 				5B3829A81B6954DB006E54F7 /* TeamInfoViewController.swift in Sources */,
 				4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */,
 				5B3829A41B6954B9006E54F7 /* RoundedRectButton.swift in Sources */,

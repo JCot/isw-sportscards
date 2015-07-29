@@ -7,20 +7,33 @@
 //
 
 import UIKit
+import CoreData
 
-class TeamInfoViewController: UIViewController {
+class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var team: Team?
+    var stats: [TeamStats]?
 
+    // MARK: Outlets
+    @IBOutlet weak var tableViewStats: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let context = self.context {
+            self.team = Team.getFromContext(context)?[0]
+            self.stats = team?.stats.allObjects as? [TeamStats]
+        }
+        
+        self.tableViewStats.dataSource = self
+        self.tableViewStats.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -38,5 +51,22 @@ class TeamInfoViewController: UIViewController {
     
     @IBAction func doneTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: UITableViewDelegate
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let statName = stats?[indexPath.row].name
+        println(statName)
+    }
+    
+    // MARK: UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.team?.stats.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TeamStats") as! EditableTableViewCell
+        cell.textField.text = stats?[indexPath.row].name
+        return cell
     }
 }
