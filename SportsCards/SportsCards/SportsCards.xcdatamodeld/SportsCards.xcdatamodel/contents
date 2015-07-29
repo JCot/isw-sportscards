@@ -4,17 +4,18 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="position" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Positions" syncable="YES"/>
+        <relationship name="position" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Positions" inverseName="athlete" inverseEntity="Positions" syncable="YES"/>
         <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="athlete" inverseEntity="AthleteStats" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="athletes" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="AthleteStats" representedClassName="SportsCards.Stats" syncable="YES">
         <attribute name="value" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="athlete" maxCount="1" deletionRule="Nullify" destinationEntity="Athlete" inverseName="stats" inverseEntity="Athlete" syncable="YES"/>
-        <relationship name="teamStat" maxCount="1" deletionRule="Nullify" destinationEntity="TeamStats" syncable="YES"/>
+        <relationship name="teamStat" maxCount="1" deletionRule="Nullify" destinationEntity="TeamStats" inverseName="athleteStats" inverseEntity="TeamStats" syncable="YES"/>
     </entity>
     <entity name="Positions" representedClassName="SportsCards.Positions" syncable="YES">
         <attribute name="position" attributeType="String" syncable="YES"/>
+        <relationship name="athlete" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="position" inverseEntity="Athlete" syncable="YES"/>
     </entity>
     <entity name="Team" representedClassName="SportsCards.Team" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -24,13 +25,14 @@
     </entity>
     <entity name="TeamStats" representedClassName="SportsCards.TeamStats" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Team" inverseName="stats" inverseEntity="Team" syncable="YES"/>
+        <relationship name="athleteStats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="teamStat" inverseEntity="AthleteStats" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="stats" inverseEntity="Team" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Athlete" positionX="-333" positionY="-129" width="128" height="133"/>
-        <element name="AthleteStats" positionX="241" positionY="-115" width="128" height="88"/>
-        <element name="Team" positionX="-155" positionY="75" width="128" height="103"/>
-        <element name="Positions" positionX="-38" positionY="-189" width="128" height="58"/>
-        <element name="TeamStats" positionX="43" positionY="288" width="128" height="73"/>
+        <element name="Athlete" positionX="-333" positionY="-129" width="128" height="135"/>
+        <element name="AthleteStats" positionX="241" positionY="-115" width="128" height="90"/>
+        <element name="Positions" positionX="-38" positionY="-189" width="128" height="75"/>
+        <element name="Team" positionX="-155" positionY="75" width="128" height="105"/>
+        <element name="TeamStats" positionX="43" positionY="288" width="128" height="90"/>
     </elements>
 </model>
