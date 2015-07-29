@@ -12,6 +12,7 @@ import CoreData
 class TeamStats: NSManagedObject {
 
     @NSManaged var name: String
-    @NSManaged var team: NSSet
+    @NSManaged var team: Team
+    @NSManaged var athleteStats: NSSet
 
 }
