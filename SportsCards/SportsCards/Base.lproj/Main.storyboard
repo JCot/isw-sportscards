@@ -127,18 +127,23 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditableTableViewCell" id="bvh-2p-0Q8" customClass="EditableTableViewCell" customModule="SportsCards" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatCell" id="bvh-2p-0Q8" customClass="EditableTableViewCell" customModule="SportsCards" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bvh-2p-0Q8" id="Sp6-XF-fCu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-vz-0gh">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="stat name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-vz-0gh">
+                                                    <rect key="frame" x="18" y="8" width="584" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="GVl-vz-0gh" secondAttribute="centerY" constant="0.25" id="9ED-Ir-nZ1"/>
+                                                <constraint firstItem="GVl-vz-0gh" firstAttribute="trailing" secondItem="Sp6-XF-fCu" secondAttribute="trailingMargin" constant="10" id="LHc-6B-DS3"/>
+                                                <constraint firstItem="GVl-vz-0gh" firstAttribute="leading" secondItem="Sp6-XF-fCu" secondAttribute="leadingMargin" constant="10" id="mDP-MW-Dgw"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="textField" destination="GVl-vz-0gh" id="JzX-jT-aj2"/>

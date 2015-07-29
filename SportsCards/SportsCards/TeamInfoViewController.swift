@@ -71,7 +71,8 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.team?.stats.count ?? 0
+        let rows = self.stats?.count ?? 0
+        return rows
     }
     
     // MARK: UITableViewDataSource
@@ -80,9 +81,9 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("EditableTableViewCell") as! EditableTableViewCell
-        cell.textLabel?.text = stats?[indexPath.row].name
+        let cell = tableView.dequeueReusableCellWithIdentifier("StatCell") as! EditableTableViewCell
         cell.textField.text = stats?[indexPath.row].name
+        cell.textField.borderStyle = .None
         return cell
     }
     
