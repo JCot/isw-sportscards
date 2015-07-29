@@ -13,6 +13,7 @@
 		4CDAEF7B1B6919A8002E256C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7A1B6919A8002E256C /* Images.xcassets */; };
 		4CDAEF7E1B6919A8002E256C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */; };
 		4CDAEF8A1B6919A8002E256C /* SportsCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF891B6919A8002E256C /* SportsCardsTests.swift */; };
+		D66B5AD81B695E8300D744A0 /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */; };
 		D6D488381B6922F7000FB4B3 /* AddAthleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */; };
 		D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488391B692367000FB4B3 /* AthleteListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		4CDAEF831B6919A8002E256C /* SportsCardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsCardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDAEF881B6919A8002E256C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CDAEF891B6919A8002E256C /* SportsCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCardsTests.swift; sourceTree = "<group>"; };
+		D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAthleteViewController.swift; sourceTree = "<group>"; };
 		D6D488391B692367000FB4B3 /* AthleteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 				4CDAEF701B6919A8002E256C /* AppDelegate.swift */,
 				4CDAEF771B6919A8002E256C /* Main.storyboard */,
 				D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */,
+				D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */,
 				D6D488391B692367000FB4B3 /* AthleteListViewController.swift */,
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D66B5AD81B695E8300D744A0 /* TextInputTableViewCell.swift in Sources */,
 				4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */,
 				4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */,
 				D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */,

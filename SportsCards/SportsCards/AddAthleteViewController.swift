@@ -9,17 +9,22 @@
 import Foundation
 import UIKit
 
-class AddAthleteViewController: UIViewController, UITextFieldDelegate {
+class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var number: UITextField!
     @IBOutlet weak var email: UITextField!
     
+    @IBOutlet weak var newPosition: UITextField!
+
     @IBOutlet weak var positions: UITableView!
-    
+
     var athleteName = ""
     var athleteNumber = ""
     var athleteEmail = ""
+    var athletePositions = [String]()
+    
+    var positionList = [String]()
     
     //var athletePositions = []
     
@@ -35,28 +40,60 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate {
         self.name.delegate = self
         self.number.delegate = self
         self.email.delegate = self
+        self.newPosition.delegate = self
         
         let tap = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboardOnOutsideTap:"))
         view.addGestureRecognizer(tap)
         
-        self.positions.registerClass(UITableViewCell.self, forCellReuseIdentifier: "positionCell")
+        self.positions.registerClass(UITableViewCell.self, forCellReuseIdentifier: "TextInputCell")
         
-        self.addPosition.delegate = self
+        positions.tableFooterView = UIView(frame: CGRectZero)
+        
         positions.delegate = self
-        poisitions.dataSource = self
+        positions.dataSource = self
+        
+        //positionList = ["Add Position +"]
+    }
+    
+    @IBAction func submit(sender: AnyObject) {
+        var pos = newPosition.text;
+        positionList.append(pos)
+        newPosition.text = ""
+        self.positions.reloadData()
+    }
+    
+    func tableView(tableView:UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return positionList.count
+    }
+    
+    func numberOfSectionsInTableView(tableView:UITableView) -> Int {
+        
+        return 1
+    }
+    
+    
+    func tableView(tableView:UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
+        
+        let cell = positions.dequeueReusableCellWithIdentifier("TextInputCell") as! UITableViewCell
+        
+        //cell.configure(text: "", placeholder: "Add Position +")
+        cell.textLabel?.text = positionList[indexPath.row]
+        
+        return cell
     }
     
     func dismissKeyboardOnOutsideTap(recognizer: UITapGestureRecognizer) {
         name.resignFirstResponder()
         number.resignFirstResponder()
         email.resignFirstResponder()
+        newPosition.resignFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "saveSegue" {
@@ -64,9 +101,8 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate {
             athleteName = name.text
             athleteNumber = number.text
             athleteEmail = email.text
-            
-            //athletePositions = positions
-            
+            athletePositions = positionList
+                        
         }
     }
     
