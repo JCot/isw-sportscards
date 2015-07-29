@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Athlete" representedClassName="Athlete" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="position" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Positions" inverseName="athlete" inverseEntity="Positions" syncable="YES"/>
-        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stats" inverseName="athlete" inverseEntity="Stats" syncable="YES"/>
+        <relationship name="position" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Positions" syncable="YES"/>
+        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="athlete" inverseEntity="AthleteStats" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="athletes" inverseEntity="Team" syncable="YES"/>
+    </entity>
+    <entity name="AthleteStats" representedClassName="Stats" syncable="YES">
+        <attribute name="value" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="athlete" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Athlete" inverseName="stats" inverseEntity="Athlete" syncable="YES"/>
+        <relationship name="teamStat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeamStats" syncable="YES"/>
     </entity>
     <entity name="Positions" representedClassName="Positions" syncable="YES">
         <attribute name="position" attributeType="String" syncable="YES"/>
-        <relationship name="athlete" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="position" inverseEntity="Athlete" syncable="YES"/>
-    </entity>
-    <entity name="Stats" representedClassName="Stats" syncable="YES">
-        <attribute name="statName" attributeType="String" syncable="YES"/>
-        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="athlete" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="stats" inverseEntity="Athlete" syncable="YES"/>
-        <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Team" inverseName="stats" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="Team" representedClassName="Team" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="sport" attributeType="String" syncable="YES"/>
         <relationship name="athletes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="team" inverseEntity="Athlete" syncable="YES"/>
-        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stats" inverseName="team" inverseEntity="Stats" syncable="YES"/>
+        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamStats" inverseName="team" inverseEntity="TeamStats" syncable="YES"/>
+    </entity>
+    <entity name="TeamStats" representedClassName="PRODUCT_MODULE_NAME.TeamStats" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Team" inverseName="stats" inverseEntity="Team" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Athlete" positionX="-333" positionY="-129" width="128" height="118"/>
-        <element name="Stats" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="Team" positionX="-171" positionY="-9" width="128" height="105"/>
-        <element name="Positions" positionX="-162" positionY="0" width="128" height="75"/>
+        <element name="Athlete" positionX="-333" positionY="-129" width="128" height="133"/>
+        <element name="AthleteStats" positionX="241" positionY="-115" width="128" height="88"/>
+        <element name="Team" positionX="-155" positionY="75" width="128" height="103"/>
+        <element name="Positions" positionX="-38" positionY="-189" width="128" height="58"/>
+        <element name="TeamStats" positionX="43" positionY="288" width="128" height="73"/>
     </elements>
 </model>
