@@ -1,53 +1,178 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="61r-DB-Z5T">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
-        <scene sceneID="avo-cs-RNW">
+        <!--Athlete List-->
+        <scene sceneID="kwV-7l-2aM">
             <objects>
-                <tableViewController id="zz5-EH-YZC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DgC-hJ-dEg">
+                <viewController id="X1K-vJ-uxs" customClass="AthleteListViewController" customModule="SportsCards" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vao-NY-GJN"/>
+                        <viewControllerLayoutGuide type="bottom" id="ynd-8J-yWA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vC9-lj-7uA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAS-za-WU6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cjU-oQ-RKu">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cjU-oQ-RKu" id="rx4-Wt-Fuc">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zz5-EH-YZC" id="OdK-zg-EZq"/>
-                            <outlet property="delegate" destination="zz5-EH-YZC" id="VaQ-2l-ZiN"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="9yq-ZD-9ig"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N5N-fA-Srs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Athlete List" id="qdh-Rw-tYt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eqk-Td-uNM">
+                            <connections>
+                                <segue destination="3Yb-wb-mIg" kind="presentation" id="djI-eq-RXw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kvt-Hn-PSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1832" y="234"/>
+            <point key="canvasLocation" x="2537" y="234"/>
+        </scene>
+        <!--Add Athlete-->
+        <scene sceneID="1CD-mG-06f">
+            <objects>
+                <viewController storyboardIdentifier="Add Athlete" title="Add Athlete" id="Gdq-iL-7bq" customClass="AddAthleteViewController" customModule="SportsCards" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fjz-M0-pRB"/>
+                        <viewControllerLayoutGuide type="bottom" id="O2r-AL-WqS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3ch-Pb-jWG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="jersey no." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-Qt-z2d">
+                                <rect key="frame" x="158" y="132" width="284" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2fS-Oc-ix7">
+                                <rect key="frame" x="158" y="177" width="284" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="athlete name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdg-MQ-Zu5">
+                                <rect key="frame" x="158" y="89" width="284" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qmE-9h-jjn">
+                                <rect key="frame" x="0.0" y="333" width="600" height="267"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextInputCell" id="oFW-L3-gCy" customClass="TextInputTableViewCell" customModule="SportsCards" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oFW-L3-gCy" id="NnE-ff-bJd">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gdq-iL-7bq" id="E7j-6H-Xbf"/>
+                                    <outlet property="delegate" destination="Gdq-iL-7bq" id="ndm-SK-har"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player's Positions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-88-Iv9">
+                                <rect key="frame" x="158" y="244" width="239" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add position 3B, C, P, OF" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14M-oD-asu">
+                                <rect key="frame" x="158" y="275" width="247" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9p-8Z-OSz">
+                                <rect key="frame" x="420" y="289" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submit:" destination="Gdq-iL-7bq" eventType="touchUpInside" id="U5n-ys-EWb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="14M-oD-asu" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="0NT-zZ-8tT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qmE-9h-jjn" secondAttribute="trailing" constant="20" id="4EV-99-E0m"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vdg-MQ-Zu5" secondAttribute="trailing" constant="20" id="ABP-wZ-vYX"/>
+                            <constraint firstItem="2qA-88-Iv9" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="IVy-rZ-scR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2fS-Oc-ix7" secondAttribute="trailing" constant="20" id="KBq-uO-bRA"/>
+                            <constraint firstItem="x9p-8Z-OSz" firstAttribute="leading" secondItem="14M-oD-asu" secondAttribute="trailing" constant="20" id="Mm4-2C-1JU"/>
+                            <constraint firstItem="2fS-Oc-ix7" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="UPY-Ke-9wQ"/>
+                            <constraint firstItem="eNs-Qt-z2d" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="aiP-ry-ydX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x9p-8Z-OSz" secondAttribute="trailing" constant="20" id="fT3-Zr-RJ4"/>
+                            <constraint firstItem="qmE-9h-jjn" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="mwj-8f-inJ"/>
+                            <constraint firstItem="vdg-MQ-Zu5" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="tzj-rZ-JSa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eNs-Qt-z2d" secondAttribute="trailing" constant="20" id="vXi-tv-3ci"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2qA-88-Iv9" secondAttribute="trailing" constant="20" id="zLL-rG-Dmp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Athlete" id="NxY-mQ-aoa">
+                        <barButtonItem key="leftBarButtonItem" title="cancel" id="aYD-6Z-hwa">
+                            <connections>
+                                <action selector="cancel:" destination="Gdq-iL-7bq" id="3Ig-UV-Ynf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="save" id="NH1-Jg-7J4"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="email" destination="2fS-Oc-ix7" id="dgO-ca-3mc"/>
+                        <outlet property="name" destination="vdg-MQ-Zu5" id="chc-NM-Gvb"/>
+                        <outlet property="newPosition" destination="14M-oD-asu" id="g6U-Bd-8Qc"/>
+                        <outlet property="number" destination="eNs-Qt-z2d" id="AsU-Vq-jm3"/>
+                        <outlet property="positions" destination="qmE-9h-jjn" id="zQh-o0-dd6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gh2-bf-Cpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3978" y="224"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="KkQ-m6-cub">
+        <scene sceneID="ejF-PV-AwN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BXy-Uf-c6o" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="61r-DB-Z5T" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fQc-D1-DgW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ecr-ip-8G8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zz5-EH-YZC" kind="relationship" relationship="rootViewController" id="CX5-Ym-eXe"/>
+                        <segue destination="X1K-vJ-uxs" kind="relationship" relationship="rootViewController" id="Oie-ZR-N5j"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GnE-pz-EHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZI-Hj-UII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="234"/>
+            <point key="canvasLocation" x="1787" y="234"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DsO-Cu-cid">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Yb-wb-mIg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RNA-bc-onZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Gdq-iL-7bq" kind="relationship" relationship="rootViewController" id="Y6R-pb-utu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NfH-Gc-ufL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3291" y="234"/>
         </scene>
     </scenes>
 </document>
