@@ -31,8 +31,8 @@ class AthleteListViewController: UIViewController {
     
     @IBAction func save(segue:UIStoryboardSegue) {
         
-        var athleteDetailVC = segue.sourceViewController as! AddAthleteViewController
-        newAthlete = athleteDetailVC.athleteName
+        var addAthleteVC = segue.sourceViewController as! AddAthleteViewController
+        newAthlete = addAthleteVC.athleteName
         athletes.append(newAthlete)
     }
 
