@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF701B6919A8002E256C /* AppDelegate.swift */; };
 		4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */; };
-		4CDAEF761B6919A8002E256C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF751B6919A8002E256C /* ViewController.swift */; };
 		4CDAEF791B6919A8002E256C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF771B6919A8002E256C /* Main.storyboard */; };
 		4CDAEF7B1B6919A8002E256C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7A1B6919A8002E256C /* Images.xcassets */; };
 		4CDAEF7E1B6919A8002E256C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */; };
 		4CDAEF8A1B6919A8002E256C /* SportsCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF891B6919A8002E256C /* SportsCardsTests.swift */; };
+		D6D488381B6922F7000FB4B3 /* AddAthleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */; };
+		D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488391B692367000FB4B3 /* AthleteListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +32,14 @@
 		4CDAEF6F1B6919A8002E256C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CDAEF701B6919A8002E256C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CDAEF731B6919A8002E256C /* SportsCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportsCards.xcdatamodel; sourceTree = "<group>"; };
-		4CDAEF751B6919A8002E256C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4CDAEF781B6919A8002E256C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4CDAEF7A1B6919A8002E256C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4CDAEF7D1B6919A8002E256C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4CDAEF831B6919A8002E256C /* SportsCardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsCardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDAEF881B6919A8002E256C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CDAEF891B6919A8002E256C /* SportsCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCardsTests.swift; sourceTree = "<group>"; };
+		D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAthleteViewController.swift; sourceTree = "<group>"; };
+		D6D488391B692367000FB4B3 /* AthleteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				4CDAEF701B6919A8002E256C /* AppDelegate.swift */,
-				4CDAEF751B6919A8002E256C /* ViewController.swift */,
 				4CDAEF771B6919A8002E256C /* Main.storyboard */,
+				D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */,
+				D6D488391B692367000FB4B3 /* AthleteListViewController.swift */,
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
 				4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */,
@@ -215,9 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CDAEF761B6919A8002E256C /* ViewController.swift in Sources */,
 				4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */,
 				4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */,
+				D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */,
+				D6D488381B6922F7000FB4B3 /* AddAthleteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +419,7 @@
 				4CDAEF8F1B6919A8002E256C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CDAEF901B6919A8002E256C /* Build configuration list for PBXNativeTarget "SportsCardsTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +428,7 @@
 				4CDAEF921B6919A8002E256C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
