@@ -16,4 +16,17 @@ class Team: NSManagedObject {
     @NSManaged var athletes: NSSet?
     @NSManaged var stats: NSSet
 
+    class func createInContext(context: NSManagedObjectContext, name: String, sport: String, athletes: NSSet, stats: NSSet) -> Team {
+        let newTeam = NSEntityDescription.insertNewObjectForEntityForName("Team", inManagedObjectContext: context) as! Team
+        newTeam.name = name
+        newTeam.sport = sport
+        newTeam.athletes = athletes
+        newTeam.stats = stats
+        return newTeam
+    }
+    
+    class func getFromContext(context: NSManagedObjectContext) -> [Team]? {
+        let fetchRequest = NSFetchRequest(entityName: "Team")
+        return context.executeFetchRequest(fetchRequest, error: nil) as? [Team]
+    }
 }
