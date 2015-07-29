@@ -21,18 +21,29 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let context = self.context {
-            self.team = Team.getFromContext(context)?[0]
-            self.stats = team?.stats.allObjects as? [TeamStats]
-        }
-        
         self.tableViewStats.dataSource = self
         self.tableViewStats.delegate = self
+        if let context = self.context {
+            var items = ["RBI", "Bases Stolen", "Hits", "At-Bats"]
+            for statName in items {
+                TeamStats.createInContext(context, name: statName)
+            }
+        }
+        
+        self.getStats()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func getStats() {
+        if let context = context {
+            let teams = Team.getFromContext(context)
+            //self.team = teams?[0]
+            self.stats = TeamStats.getFromContext(context)
+        }
     }
 
     /*
@@ -59,14 +70,33 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         println(statName)
     }
     
-    // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.team?.stats.count ?? 0
     }
     
+    // MARK: UITableViewDataSource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TeamStats") as! EditableTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("EditableTableViewCell") as! EditableTableViewCell
+        cell.textLabel?.text = stats?[indexPath.row].name
         cell.textField.text = stats?[indexPath.row].name
         return cell
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            if let statToDelete = self.stats?[indexPath.row] {
+                context?.deleteObject(statToDelete)
+                self.getStats()
+                self.tableViewStats.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+        }
     }
 }

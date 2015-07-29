@@ -15,7 +15,7 @@ class TeamStats: NSManagedObject {
     @NSManaged var team: NSSet
 
     class func createInContext(context: NSManagedObjectContext, name: String) -> TeamStats {
-        let newStat = NSEntityDescription.insertNewObjectForEntityForName("Team", inManagedObjectContext: context) as! TeamStats
+        let newStat = NSEntityDescription.insertNewObjectForEntityForName("TeamStats", inManagedObjectContext: context) as! TeamStats
         newStat.name = name
         return newStat
     }
