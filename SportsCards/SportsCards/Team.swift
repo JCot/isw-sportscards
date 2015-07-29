@@ -13,7 +13,7 @@ class Team: NSManagedObject {
 
     @NSManaged var name: String
     @NSManaged var sport: String
-    @NSManaged var athletes: NSSet
+    @NSManaged var athletes: NSSet?
     @NSManaged var stats: NSSet
 
 }

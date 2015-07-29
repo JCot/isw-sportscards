@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Athlete" representedClassName="SportsCards.Athlete" syncable="YES">
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="position" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Positions" inverseName="athlete" inverseEntity="Positions" syncable="YES"/>
+        <attribute name="number" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="position" toMany="YES" deletionRule="Nullify" destinationEntity="Positions" inverseName="athlete" inverseEntity="Positions" syncable="YES"/>
         <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="athlete" inverseEntity="AthleteStats" syncable="YES"/>
-        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="athletes" inverseEntity="Team" syncable="YES"/>
+        <relationship name="team" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="athletes" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="AthleteStats" representedClassName="SportsCards.Stats" syncable="YES">
         <attribute name="value" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -15,18 +15,18 @@
     </entity>
     <entity name="Positions" representedClassName="SportsCards.Positions" syncable="YES">
         <attribute name="position" attributeType="String" syncable="YES"/>
-        <relationship name="athlete" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="position" inverseEntity="Athlete" syncable="YES"/>
+        <relationship name="athlete" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="position" inverseEntity="Athlete" syncable="YES"/>
     </entity>
     <entity name="Team" representedClassName="SportsCards.Team" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="sport" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sport" attributeType="String" syncable="YES"/>
         <relationship name="athletes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="team" inverseEntity="Athlete" syncable="YES"/>
-        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamStats" inverseName="team" inverseEntity="TeamStats" syncable="YES"/>
+        <relationship name="stats" toMany="YES" deletionRule="Nullify" destinationEntity="TeamStats" inverseName="team" inverseEntity="TeamStats" syncable="YES"/>
     </entity>
     <entity name="TeamStats" representedClassName="SportsCards.TeamStats" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="athleteStats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="teamStat" inverseEntity="AthleteStats" syncable="YES"/>
-        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="stats" inverseEntity="Team" syncable="YES"/>
+        <relationship name="athleteStats" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="teamStat" inverseEntity="AthleteStats" syncable="YES"/>
+        <relationship name="team" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="stats" inverseEntity="Team" syncable="YES"/>
     </entity>
     <elements>
         <element name="Athlete" positionX="-333" positionY="-129" width="128" height="135"/>

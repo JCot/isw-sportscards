@@ -8,11 +8,9 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class AthleteListViewController: UIViewController {
-    
-    var newAthlete = ""
-    var athletes = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +30,15 @@ class AthleteListViewController: UIViewController {
     @IBAction func save(segue:UIStoryboardSegue) {
         
         var addAthleteVC = segue.sourceViewController as! AddAthleteViewController
-        newAthlete = addAthleteVC.athleteName
-        athletes.append(newAthlete)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let athlete =  NSEntityDescription.insertNewObjectForEntityForName("Athlete", inManagedObjectContext: managedContext) as! Athlete
+        athlete.name = addAthleteVC.athleteName
+        athlete.email = addAthleteVC.athleteEmail
+        athlete.number = addAthleteVC.athleteNumber.toInt()!
+        
     }
 
     
