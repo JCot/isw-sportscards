@@ -14,6 +14,11 @@
 		4CDAEF7B1B6919A8002E256C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7A1B6919A8002E256C /* Images.xcassets */; };
 		4CDAEF7E1B6919A8002E256C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */; };
 		4CDAEF8A1B6919A8002E256C /* SportsCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF891B6919A8002E256C /* SportsCardsTests.swift */; };
+		4CDAEFA01B6935D0002E256C /* AthleteStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF9F1B6935D0002E256C /* AthleteStats.swift */; };
+		4CDAEFA21B6935D1002E256C /* Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEFA11B6935D1002E256C /* Positions.swift */; };
+		4CDAEFA41B6935D1002E256C /* TeamStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEFA31B6935D1002E256C /* TeamStats.swift */; };
+		4CDAEFA61B6935D1002E256C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEFA51B6935D1002E256C /* Team.swift */; };
+		4CDAEFA81B6935D1002E256C /* Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEFA71B6935D1002E256C /* Athlete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		4CDAEF831B6919A8002E256C /* SportsCardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsCardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDAEF881B6919A8002E256C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CDAEF891B6919A8002E256C /* SportsCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCardsTests.swift; sourceTree = "<group>"; };
+		4CDAEF9F1B6935D0002E256C /* AthleteStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteStats.swift; sourceTree = "<group>"; };
+		4CDAEFA11B6935D1002E256C /* Positions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Positions.swift; sourceTree = "<group>"; };
+		4CDAEFA31B6935D1002E256C /* TeamStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamStats.swift; sourceTree = "<group>"; };
+		4CDAEFA51B6935D1002E256C /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		4CDAEFA71B6935D1002E256C /* Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Athlete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +95,11 @@
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
 				4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */,
+				4CDAEFA71B6935D1002E256C /* Athlete.swift */,
+				4CDAEFA51B6935D1002E256C /* Team.swift */,
+				4CDAEFA31B6935D1002E256C /* TeamStats.swift */,
+				4CDAEFA11B6935D1002E256C /* Positions.swift */,
+				4CDAEF9F1B6935D0002E256C /* AthleteStats.swift */,
 				4CDAEF6E1B6919A8002E256C /* Supporting Files */,
 			);
 			path = SportsCards;
@@ -215,9 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDAEFA41B6935D1002E256C /* TeamStats.swift in Sources */,
 				4CDAEF761B6919A8002E256C /* ViewController.swift in Sources */,
+				4CDAEFA61B6935D1002E256C /* Team.swift in Sources */,
+				4CDAEFA01B6935D0002E256C /* AthleteStats.swift in Sources */,
 				4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */,
+				4CDAEFA21B6935D1002E256C /* Positions.swift in Sources */,
 				4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */,
+				4CDAEFA81B6935D1002E256C /* Athlete.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,9 +366,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SportsCards/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -356,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SportsCards/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
