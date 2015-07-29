@@ -12,5 +12,6 @@ import CoreData
 class Positions: NSManagedObject {
 
     @NSManaged var position: String
+    @NSManaged var athlete: NSSet
 
 }

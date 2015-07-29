@@ -12,7 +12,8 @@ import CoreData
 class TeamStats: NSManagedObject {
 
     @NSManaged var name: String
-    @NSManaged var team: NSSet
+    @NSManaged var team: Team
+    @NSManaged var athleteStats: NSSet
 
     class func createInContext(context: NSManagedObjectContext, name: String) -> TeamStats {
         let newStat = NSEntityDescription.insertNewObjectForEntityForName("TeamStats", inManagedObjectContext: context) as! TeamStats
