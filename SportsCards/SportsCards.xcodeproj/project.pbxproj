@@ -22,6 +22,7 @@
 		5B3829A81B6954DB006E54F7 /* TeamInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */; };
 		5B3829AC1B6965C7006E54F7 /* EditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */; };
 		D65B8A2B1B6A9959000C1415 /* SelectMetricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B8A2A1B6A9959000C1415 /* SelectMetricsViewController.swift */; };
+		D65B8A2D1B6AE056000C1415 /* CardDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B8A2C1B6AE056000C1415 /* CardDisplayViewController.swift */; };
 		D66B5ADA1B69878B00D744A0 /* CreateCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66B5AD91B69878B00D744A0 /* CreateCardViewController.swift */; };
 		D6D488381B6922F7000FB4B3 /* AddAthleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */; };
 		D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488391B692367000FB4B3 /* AthleteListViewController.swift */; };
@@ -57,6 +58,7 @@
 		5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamInfoViewController.swift; sourceTree = "<group>"; };
 		5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableTableViewCell.swift; sourceTree = "<group>"; };
 		D65B8A2A1B6A9959000C1415 /* SelectMetricsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMetricsViewController.swift; sourceTree = "<group>"; };
+		D65B8A2C1B6AE056000C1415 /* CardDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDisplayViewController.swift; sourceTree = "<group>"; };
 		D66B5AD91B69878B00D744A0 /* CreateCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCardViewController.swift; sourceTree = "<group>"; };
 		D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAthleteViewController.swift; sourceTree = "<group>"; };
 		D6D488391B692367000FB4B3 /* AthleteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteListViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */,
 				D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */,
 				D6D488391B692367000FB4B3 /* AthleteListViewController.swift */,
+				D65B8A2C1B6AE056000C1415 /* CardDisplayViewController.swift */,
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
 				4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */,
@@ -152,7 +155,6 @@
 			children = (
 				5B3829A31B6954B9006E54F7 /* RoundedRectButton.swift */,
 				5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */,
-				D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -270,6 +272,7 @@
 				4CDAEFA21B6935D1002E256C /* Positions.swift in Sources */,
 				4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */,
 				D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */,
+				D65B8A2D1B6AE056000C1415 /* CardDisplayViewController.swift in Sources */,
 				D6D488381B6922F7000FB4B3 /* AddAthleteViewController.swift in Sources */,
 				4CDAEFA81B6935D1002E256C /* Athlete.swift in Sources */,
 			);

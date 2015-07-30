@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var team: Team?
@@ -25,13 +25,16 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
     @IBOutlet var viewPickerCover: UIView!
     @IBOutlet weak var imageViewSportPicker: UIImageView!
     
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let tap = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboardOnOutsideTap"))
         tap.delegate = self
         view.addGestureRecognizer(tap)
-
+        
         self.tableViewStats.dataSource = self
         
         self.pickerSport.dataSource = self
@@ -42,7 +45,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
         if let image = self.team?.sportValue?.getImage() {
             self.imageViewSportPicker.image = image
         } else {
-            self.buttonPickSport.setTitle("Sport", forState: .Normal)
+            self.buttonPickSport.setTitle("⚪", forState: .Normal)
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
@@ -82,6 +85,11 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     // MARK: Data Fetching

@@ -142,13 +142,14 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     func dismissKeyboardOnOutsideTap(recognizer: UITapGestureRecognizer) {
         blurb.resignFirstResponder()
     }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
 
     func textView(textView: UITextView, shouldChangeTextInRange range:NSRange, replacementText text:String ) -> Bool {
+        
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        
         var len = count(text)
         return count(blurb.text) + (len - range.length) <= 140;
     }

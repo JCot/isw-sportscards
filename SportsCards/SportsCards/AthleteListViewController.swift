@@ -32,7 +32,6 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let name = athletes?[indexPath.row].name
-        println(name)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
