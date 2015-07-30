@@ -172,7 +172,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
-        let index = indexPath.row
+        /*let index = indexPath.row
         let statCount = self.stats?.count
         if index < statCount {
             if let editedStat = self.stats?[index],
@@ -180,6 +180,6 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
             {
                 editedStat.name = cell.textField.text
             }
-        }
+        }*/
     }
 }
