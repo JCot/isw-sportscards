@@ -149,10 +149,9 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             var navController = segue.destinationViewController as! UINavigationController
             var showDetailVC = navController.topViewController as! AthleteDetailsViewController
             let indexPath = self.athleteListView.indexPathForSelectedRow()
-            let cell = self.athleteListView.cellForRowAtIndexPath(indexPath!)
-            var name = cell?.textLabel?.text
-            var result = Athlete.getFromContext(context!)
-            showDetailVC.athlete = result?[0]
+            var row = indexPath?.row
+            var currentAthlete = athletes?[row!]
+            showDetailVC.athlete = currentAthlete
         }
     }
 }
