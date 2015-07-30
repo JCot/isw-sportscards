@@ -85,14 +85,6 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
     }
     
     // MARK: Data Fetching
-    private func getStats() {
-        if let context = context {
-            let teams = Team.getFromContext(context)
-            //self.team = teams?[0]
-            self.stats = TeamStats.getFromContext(context)
-        }
-    }
-    
     private func getTeam() {
         if let context = context {
             let teams = Team.getFromContext(context)
@@ -104,35 +96,8 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
         }
         self.stats = self.team?.stats.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]) as? [TeamStats]
     }
-    
-    private func seed() {
-        if let context = self.context {
-            var items = [
-                ("RBI", self.team),
-                ("Bases Stolen", self.team),
-                ("Hits", self.team),
-                ("At-Bats", self.team)
-            ]
-            var stats = [TeamStats]()
-            for (statName, team) in items {
-                let teamStat = TeamStats.createInContext(context, name: statName, team: team!)
-                stats.append(teamStat)
-            }
-            team?.stats = NSSet(array: stats)
-            self.context?.save(nil)
-        }
-    }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     @IBAction func cancelTapped(sender: AnyObject) {
         self.context?.rollback()
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -155,11 +120,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
         self.viewPickerCover.userInteractionEnabled = true
     }
     
-    @IBAction func addStatTapped(sender: AnyObject) {
-        //let statCount = self.stats?.count ?? 1
-        //self.tableViewStats.insertRowsAtIndexPaths([NSIndexPath(forRow: statCount - 1, inSection: 0)], withRowAnimation: .Automatic)
-        //self.tableViewStats.selectRowAtIndexPath(NSIndexPath(forRow: statCount - 1, inSection: 0), animated: true, scrollPosition: .Bottom)
-        
+    @IBAction func addStatTapped(sender: AnyObject) {        
         self.updateStatsFromTable()
         if let context = self.context {
             let newStat = TeamStats.createInContext(context, name: "", team: self.team)
@@ -207,7 +168,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
         if editingStyle == .Delete {
             if let statToDelete = self.stats?[indexPath.row] {
                 context?.deleteObject(statToDelete)
-                self.getStats()
+                self.stats?.removeAtIndex(indexPath.row)
                 self.tableViewStats.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
         }
