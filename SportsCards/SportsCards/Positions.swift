@@ -36,4 +36,17 @@ class Positions: NSManagedObject {
         fetchRequest.predicate = filter
         return context.executeFetchRequest(fetchRequest, error: nil) as? [Positions]
     }
+    
+    class func getFromContextByAthlete(context: NSManagedObjectContext, athlete: Athlete?) -> [Positions]? {
+        if let athlete = athlete {
+            let fetchRequest = NSFetchRequest(entityName: "Positions")
+            let sort = NSSortDescriptor(key: "position", ascending: true)
+            let teamFilter = NSPredicate(format: "athlete contains[c] %@", athlete)
+            fetchRequest.sortDescriptors = [sort]
+            fetchRequest.predicate = teamFilter
+            return context.executeFetchRequest(fetchRequest, error: nil) as? [Positions]
+        } else {
+            return self.getFromContext(context)
+        }
+    }
 }
