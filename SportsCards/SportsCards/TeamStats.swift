@@ -31,12 +31,16 @@ class TeamStats: NSManagedObject {
         return context.executeFetchRequest(fetchRequest, error: nil) as? [TeamStats]
     }
     
-    class func getFromContextByTeamName(context: NSManagedObjectContext, teamName: String) -> [TeamStats]? {
-        let fetchRequest = NSFetchRequest(entityName: "TeamStats")
-        let sort = NSSortDescriptor(key: "name", ascending: true)
-        let filter = NSPredicate(format: "team.name = %s", teamName)
-        fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = filter
-        return context.executeFetchRequest(fetchRequest, error: nil) as? [TeamStats]
+    class func getFromContextByTeam(context: NSManagedObjectContext, team: Team?) -> [TeamStats]? {
+        if let team = team {
+            let fetchRequest = NSFetchRequest(entityName: "TeamStats")
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            let filter = NSPredicate(format: "team = %@", team)
+            fetchRequest.sortDescriptors = [sort]
+            fetchRequest.predicate = filter
+            return context.executeFetchRequest(fetchRequest, error: nil) as? [TeamStats]
+        } else {
+            return self.getFromContext(context)
+        }
     }
 }
