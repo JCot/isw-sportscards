@@ -85,8 +85,17 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         
-        var stats = TeamStats.getFromContext(context!)
-        athlete.stats = NSSet(array: stats!)
+        var stats: [TeamStats]? = TeamStats.getFromContext(context!)
+        var athleteStats: [AthleteStats] = []
+        for var i = 0; i < stats?.count ?? 0; i++ {
+            var stat = stats?[i]
+            if(stat != nil) {
+                var newAthleteStat = AthleteStats.createInContext(context!, value: 0.0, teamStat: stat!, athlete: athlete)
+                athleteStats.append(newAthleteStat)
+            }
+        }
+        
+        athlete.stats = NSSet(array: athleteStats)
         
         self.athletes?.append(athlete)
         
@@ -100,11 +109,12 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAthleteDetails" {
-            var showDetailVC = segue.destinationViewController as! AthleteDetailsViewController
+            var navController = segue.destinationViewController as! UINavigationController
+            var showDetailVC = navController.topViewController as! AthleteDetailsViewController
             let indexPath = self.athleteListView.indexPathForSelectedRow()
             let cell = self.athleteListView.cellForRowAtIndexPath(indexPath!)
             var name = cell?.textLabel?.text
-            var result = Athlete.getFromContextByName(context!, name: name!)
+            var result = Athlete.getFromContext(context!)
             showDetailVC.athlete = result?[0]
         }
     }

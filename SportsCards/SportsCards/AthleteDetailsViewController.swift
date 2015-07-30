@@ -33,7 +33,13 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("StatValueCell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("StatValueCell") as! AthleteDetailViewCell
+        var row = indexPath.row
+        var allStats = athlete?.stats?.allObjects
+        var statInRow: AthleteStats = allStats?[row] as! AthleteStats
+        
+        cell.statNameLabel.text = statInRow.teamStat.name
+        cell.statValueField.text = String(stringInterpolationSegment: statInRow.value)
         
         return cell
     }
