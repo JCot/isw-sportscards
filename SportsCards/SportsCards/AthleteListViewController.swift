@@ -86,7 +86,7 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK: Segue functions
     @IBAction func cancel(segue:UIStoryboardSegue) {
         self.context?.rollback()
-        var athleteDetailVC = segue.sourceViewController as! AddAthleteViewController
+        //var athleteDetailVC = segue.sourceViewController as! AddAthleteViewController
     }
     
     @IBAction func save(segue:UIStoryboardSegue) {
@@ -119,29 +119,25 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             athlete.position = NSSet(array: positionSet)
+            
+            var stats: [TeamStats]? = TeamStats.getFromContext(self.context!)
+            var athleteStats: [AthleteStats] = []
+            for var i = 0; i < stats?.count ?? 0; i++ {
+                var stat = stats?[i]
+                if(stat != nil) {
+                    var newAthleteStat = AthleteStats.createInContext(self.context!, value: 0.0, teamStat: stat!, athlete: athlete)
+                    athleteStats.append(newAthleteStat)
+                }
+            }
+            
+            athlete.stats = NSSet(array: athleteStats)
+            
             athletes?.append(athlete)
             
             let indexPath = NSIndexPath(forRow: (athletes?.count ?? 1) - 1, inSection: 0)
             athleteListView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             self.context?.save(nil)
         }
-        
-        var stats: [TeamStats]? = TeamStats.getFromContext(context!)
-        var athleteStats: [AthleteStats] = []
-        for var i = 0; i < stats?.count ?? 0; i++ {
-            var stat = stats?[i]
-            if(stat != nil) {
-                var newAthleteStat = AthleteStats.createInContext(context!, value: 0.0, teamStat: stat!, athlete: athlete)
-                athleteStats.append(newAthleteStat)
-            }
-        }
-        
-        athlete.stats = NSSet(array: athleteStats)
-        
-        self.athletes?.append(athlete)
-        
-        let indexPath = NSIndexPath(forRow: (athletes?.count ?? 1) - 1, inSection: 0)
-        self.athleteListView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
     
     @IBAction func saveAthleteDetails(segue:UIStoryboardSegue) {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4CAAA9281B6AA469000E4E74 /* AthleteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAA9271B6AA469000E4E74 /* AthleteDetailsViewController.swift */; };
-		4CAAA92A1B6ABD11000E4E74 /* AthleteDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAA9291B6ABD11000E4E74 /* AthleteDetailViewCell.swift */; };
+		4CAAA92C1B6ADFA0000E4E74 /* AthleteDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAA92B1B6ADFA0000E4E74 /* AthleteDetailViewCell.swift */; };
 		4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF701B6919A8002E256C /* AppDelegate.swift */; };
 		4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */; };
 		4CDAEF791B6919A8002E256C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CDAEF771B6919A8002E256C /* Main.storyboard */; };
@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		4CAAA9271B6AA469000E4E74 /* AthleteDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteDetailsViewController.swift; sourceTree = "<group>"; };
-		4CAAA9291B6ABD11000E4E74 /* AthleteDetailViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteDetailViewCell.swift; sourceTree = "<group>"; };
+		4CAAA92B1B6ADFA0000E4E74 /* AthleteDetailViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteDetailViewCell.swift; sourceTree = "<group>"; };
 		4CDAEF6B1B6919A8002E256C /* SportsCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDAEF6F1B6919A8002E256C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CDAEF701B6919A8002E256C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,11 +106,11 @@
 				5B3829A01B695463006E54F7 /* UI */,
 				4CDAEF701B6919A8002E256C /* AppDelegate.swift */,
 				4CDAEF771B6919A8002E256C /* Main.storyboard */,
+				4CAAA92B1B6ADFA0000E4E74 /* AthleteDetailViewCell.swift */,
 				4CAAA9271B6AA469000E4E74 /* AthleteDetailsViewController.swift */,
 				5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */,
 				D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */,
 				D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */,
-				4CAAA9291B6ABD11000E4E74 /* AthleteDetailViewCell.swift */,
 				D6D488391B692367000FB4B3 /* AthleteListViewController.swift */,
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
@@ -155,7 +155,6 @@
 			children = (
 				5B3829A31B6954B9006E54F7 /* RoundedRectButton.swift */,
 				5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */,
-				D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -269,7 +268,7 @@
 				4CDAEF741B6919A8002E256C /* SportsCards.xcdatamodeld in Sources */,
 				4CAAA9281B6AA469000E4E74 /* AthleteDetailsViewController.swift in Sources */,
 				5B3829A41B6954B9006E54F7 /* RoundedRectButton.swift in Sources */,
-				4CAAA92A1B6ABD11000E4E74 /* AthleteDetailViewCell.swift in Sources */,
+				4CAAA92C1B6ADFA0000E4E74 /* AthleteDetailViewCell.swift in Sources */,
 				4CDAEFA21B6935D1002E256C /* Positions.swift in Sources */,
 				4CDAEF711B6919A8002E256C /* AppDelegate.swift in Sources */,
 				D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */,

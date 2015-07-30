@@ -8,7 +8,7 @@
         <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="athlete" inverseEntity="AthleteStats" syncable="YES"/>
         <relationship name="team" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="athletes" inverseEntity="Team" syncable="YES"/>
     </entity>
-    <entity name="AthleteStats" representedClassName="SportsCards.Stats" syncable="YES">
+    <entity name="AthleteStats" representedClassName="SportsCards.AthleteStats" syncable="YES">
         <attribute name="value" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="athlete" maxCount="1" deletionRule="Nullify" destinationEntity="Athlete" inverseName="stats" inverseEntity="Athlete" syncable="YES"/>
         <relationship name="teamStat" maxCount="1" deletionRule="Nullify" destinationEntity="TeamStats" inverseName="athleteStats" inverseEntity="TeamStats" syncable="YES"/>

@@ -11,11 +11,18 @@ import UIKit
 class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var athlete: Athlete?
+    @IBOutlet weak var athleteNameField: UITextField!
+    @IBOutlet weak var athleteNumberField: UITextField!
+    @IBOutlet weak var athletePositionsField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        athleteNameField.text = athlete?.name
+        athleteNumberField.text = athlete?.number
+        
     }
 
     override func didReceiveMemoryWarning() {
