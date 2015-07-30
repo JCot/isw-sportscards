@@ -33,6 +33,8 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.getTeam()
+        self.getAthletes()
         self.navigationItem.title = self.team?.name ?? "Athletes"
     }
     
@@ -42,6 +44,8 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             let teams = Team.getFromContext(context)
             if teams?.count > 0 {
                 self.team = teams?[0]
+            } else {
+                self.performSegueWithIdentifier("teamInfoSegue", sender: self)
             }
         }
     }
