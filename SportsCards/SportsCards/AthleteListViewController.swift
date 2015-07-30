@@ -29,7 +29,7 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.getTeam()
         self.getAthletes()
-}
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
