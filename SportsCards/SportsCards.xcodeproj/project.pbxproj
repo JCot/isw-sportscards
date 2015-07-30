@@ -107,7 +107,6 @@
 				5B3829A51B6954DB006E54F7 /* AthleteListTableViewController.swift */,
 				5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */,
 				D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */,
-				D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */,
 				D6D488391B692367000FB4B3 /* AthleteListViewController.swift */,
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
@@ -152,6 +151,7 @@
 			children = (
 				5B3829A31B6954B9006E54F7 /* RoundedRectButton.swift */,
 				5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */,
+				D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
