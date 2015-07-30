@@ -27,10 +27,19 @@ class Athlete: NSManagedObject {
         return newAthlete
     }
     
-    class func getFromContex(context: NSManagedObjectContext) -> [Athlete]? {
+    class func getFromContext(context: NSManagedObjectContext) -> [Athlete]? {
         let fetchRequest = NSFetchRequest(entityName: "Athlete")
         let sort = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sort]
+        return context.executeFetchRequest(fetchRequest, error: nil) as? [Athlete]
+    }
+    
+    class func getFromContextByName(context: NSManagedObjectContext, name: String) -> [Athlete]? {
+        let fetchRequest = NSFetchRequest(entityName: "Athlete")
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let filter = NSPredicate(format: "name = %s", name)
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = filter
         return context.executeFetchRequest(fetchRequest, error: nil) as? [Athlete]
     }
     
@@ -43,7 +52,7 @@ class Athlete: NSManagedObject {
             fetchRequest.predicate = teamFilter
             return context.executeFetchRequest(fetchRequest, error: nil) as? [Athlete]
         } else {
-            return self.getFromContex(context)
+            return self.getFromContext(context)
         }
     }
 }
