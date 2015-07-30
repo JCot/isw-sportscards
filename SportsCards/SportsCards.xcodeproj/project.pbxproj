@@ -22,6 +22,7 @@
 		5B3829A71B6954DB006E54F7 /* AthleteListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829A51B6954DB006E54F7 /* AthleteListTableViewController.swift */; };
 		5B3829A81B6954DB006E54F7 /* TeamInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */; };
 		5B3829AC1B6965C7006E54F7 /* EditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */; };
+		5B3A534B1B6A84A2002E4A28 /* SportCollectionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3A534A1B6A84A2002E4A28 /* SportCollectionCollectionViewController.swift */; };
 		D66B5AD81B695E8300D744A0 /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */; };
 		D6D488381B6922F7000FB4B3 /* AddAthleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */; };
 		D6D4883A1B692367000FB4B3 /* AthleteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D488391B692367000FB4B3 /* AthleteListViewController.swift */; };
@@ -57,6 +58,7 @@
 		5B3829A51B6954DB006E54F7 /* AthleteListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteListTableViewController.swift; sourceTree = "<group>"; };
 		5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamInfoViewController.swift; sourceTree = "<group>"; };
 		5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableTableViewCell.swift; sourceTree = "<group>"; };
+		5B3A534A1B6A84A2002E4A28 /* SportCollectionCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCollectionCollectionViewController.swift; sourceTree = "<group>"; };
 		D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAthleteViewController.swift; sourceTree = "<group>"; };
 		D6D488391B692367000FB4B3 /* AthleteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteListViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				5B3829A61B6954DB006E54F7 /* TeamInfoViewController.swift */,
 				D6D488371B6922F7000FB4B3 /* AddAthleteViewController.swift */,
 				D6D488391B692367000FB4B3 /* AthleteListViewController.swift */,
+				5B3A534A1B6A84A2002E4A28 /* SportCollectionCollectionViewController.swift */,
 				4CDAEF7A1B6919A8002E256C /* Images.xcassets */,
 				4CDAEF7C1B6919A8002E256C /* LaunchScreen.xib */,
 				4CDAEF721B6919A8002E256C /* SportsCards.xcdatamodeld */,
@@ -258,6 +261,7 @@
 			files = (
 				4CDAEFA41B6935D1002E256C /* TeamStats.swift in Sources */,
 				4CDAEFA61B6935D1002E256C /* Team.swift in Sources */,
+				5B3A534B1B6A84A2002E4A28 /* SportCollectionCollectionViewController.swift in Sources */,
 				4CDAEFA01B6935D0002E256C /* AthleteStats.swift in Sources */,
 				5B3829AC1B6965C7006E54F7 /* EditableTableViewCell.swift in Sources */,
 				5B3829A81B6954DB006E54F7 /* TeamInfoViewController.swift in Sources */,
