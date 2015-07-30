@@ -30,11 +30,6 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let name = athletes?[indexPath.row].name
-        println(name)
-    }
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -47,8 +42,8 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AthleteCell") as! UITableViewCell
         
-        cell.textLabel?.text = athletes?[indexPath.row].name
-        cell.detailTextLabel?.text = athletes?[indexPath.row].number
+        cell.textLabel?.text = self.athletes?[indexPath.row].name
+        cell.detailTextLabel?.text = self.athletes?[indexPath.row].number
         return cell
     }
     
@@ -65,6 +60,8 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         var addAthleteVC = segue.sourceViewController as! AddAthleteViewController
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        //TODO Check if athlete already exists
         
         let athlete =  Athlete.createInContext(self.context!, name: addAthleteVC.athleteName, number: addAthleteVC.athleteNumber, email: addAthleteVC.athleteEmail)
         
@@ -88,10 +85,28 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         
-        athletes?.append(athlete)
+        var stats = TeamStats.getFromContext(context!)
+        athlete.stats = NSSet(array: stats!)
+        
+        self.athletes?.append(athlete)
         
         let indexPath = NSIndexPath(forRow: (athletes?.count ?? 1) - 1, inSection: 0)
-        athleteListView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.athleteListView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+    }
+    
+    @IBAction func saveAthleteDetails(segue:UIStoryboardSegue) {
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showAthleteDetails" {
+            var showDetailVC = segue.destinationViewController as! AthleteDetailsViewController
+            let indexPath = self.athleteListView.indexPathForSelectedRow()
+            let cell = self.athleteListView.cellForRowAtIndexPath(indexPath!)
+            var name = cell?.textLabel?.text
+            var result = Athlete.getFromContextByName(context!, name: name!)
+            showDetailVC.athlete = result?[0]
+        }
     }
 
     

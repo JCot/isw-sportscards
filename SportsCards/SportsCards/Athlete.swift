@@ -32,5 +32,14 @@ class Athlete: NSManagedObject {
         fetchRequest.sortDescriptors = [sort]
         return context.executeFetchRequest(fetchRequest, error: nil) as? [Athlete]
     }
+    
+    class func getFromContextByName(context: NSManagedObjectContext, name: String) -> [Athlete]? {
+        let fetchRequest = NSFetchRequest(entityName: "Athlete")
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let filter = NSPredicate(format: "name = %s", name)
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = filter
+        return context.executeFetchRequest(fetchRequest, error: nil) as? [Athlete]
+    }
 
 }
