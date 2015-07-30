@@ -9,5 +9,5 @@
 import UIKit
 
 @IBDesignable class EditableTableViewCell: UITableViewCell {
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet var textField: UITextField!
 }
