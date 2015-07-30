@@ -42,6 +42,8 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             let teams = Team.getFromContext(context)
             if teams?.count > 0 {
                 self.team = teams?[0]
+            } else {
+                self.performSegueWithIdentifier("teamInfoSegue", sender: self)
             }
         }
     }

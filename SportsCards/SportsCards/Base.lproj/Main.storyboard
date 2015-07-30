@@ -50,7 +50,7 @@
                     <navigationItem key="navigationItem" title="Athlete List" id="qdh-Rw-tYt">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="fxR-9V-Z5H">
                             <connections>
-                                <segue destination="meT-KA-4jf" kind="presentation" id="qcP-pp-TaE"/>
+                                <segue destination="meT-KA-4jf" kind="presentation" identifier="teamInfoSegue" id="qcP-pp-TaE"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eqk-Td-uNM">
