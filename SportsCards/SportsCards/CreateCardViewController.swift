@@ -13,7 +13,7 @@ import CoreData
 class CreateCardViewController: UITableViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate {
     
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    //var athletes: [Athlete]?
+    var athletes: [Athlete]? = []
 
     @IBOutlet weak var paramsTableView: UITableView!
     
@@ -29,8 +29,6 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     @IBOutlet weak var generateButton: UIBarButtonItem!
     
     let imagePicker = UIImagePickerController()
-    
-    var athletes = ["Jimmy", "Timmy", "Tommy", "Bill"]
     
     var athletePickerHidden = true
     
@@ -60,13 +58,13 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
         
+        
         self.getAthletes()
     }
     
     private func getAthletes() {
         if let context = context {
-            //self.athletes = Athlete.getFromContext(context)
-            self.athletes = []
+            self.athletes = Athlete.getFromContext(context)
         }
     }
     
@@ -96,18 +94,18 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return athletes.count;
+        return athletes?.count ?? 0
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         
-        return athletes[row]
+        return athletes?[row].name
         
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        athleteSelectedLabel.text = athletes[row]
+        athleteSelectedLabel.text = athletes?[row].name
         athleteSelectedLabel.textColor = UIColor.blackColor()
     }
     

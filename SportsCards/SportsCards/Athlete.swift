@@ -26,7 +26,7 @@ class Athlete: NSManagedObject {
         return newAthlete
     }
     
-    class func getFromContex(context: NSManagedObjectContext) -> [Athlete]? {
+    class func getFromContext(context: NSManagedObjectContext) -> [Athlete]? {
         let fetchRequest = NSFetchRequest(entityName: "Athlete")
         let sort = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sort]
