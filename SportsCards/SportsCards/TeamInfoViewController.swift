@@ -9,11 +9,13 @@
 import UIKit
 import CoreData
 
-class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
     
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var team: Team?
     var stats: [TeamStats]?
+    private var keyboardMovedFrame: Bool = false
+    private var keyboardOffset: CGFloat = 80.0
 
     // MARK: Outlets
     @IBOutlet weak var tableViewStats: UITableView!
@@ -30,17 +32,49 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.getTeam()
         self.textFieldTeamName.text = self.team?.name
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
     }
-
+    
+    // MARK: Keyboard Manipulation
+    func keyboardWillShow() {
+        if !self.textFieldTeamName.editing {
+            let rect = self.view.frame
+            UIView.setAnimationDuration(0.3)
+            //rect.origin.y = rect.origin.y - self.keyboardOffset
+            self.view.frame = CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect) - self.keyboardOffset, CGRectGetWidth(rect), CGRectGetHeight(rect) + self.keyboardOffset)
+            self.keyboardMovedFrame = true
+        }
+    }
+    
+    func keyboardWillHide() {
+        if self.keyboardMovedFrame {
+            let rect = self.view.frame
+            UIView.setAnimationDuration(0.3)
+            //rect.origin.y = rect.origin.y - self.keyboardOffset
+            self.view.frame = CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(UIScreen.mainScreen().bounds))
+            self.keyboardMovedFrame = false
+        }
+    }
+    
+    func dismissKeyboardOnOutsideTap() {
+        self.textFieldTeamName.resignFirstResponder()
+        self.textFieldTeamName.endEditing(true)
+        self.tableViewStats.endEditing(true)
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch = touches.first as? UITouch
+        self.keyboardOffset = 20.0 + (touch?.locationInView(self.view).y ?? 70.0)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func dismissKeyboardOnOutsideTap() {
-        self.tableViewStats.endEditing(true)
-    }
-    
+    // MARK: Data Fetching
     private func getStats() {
         if let context = context {
             let teams = Team.getFromContext(context)
@@ -58,8 +92,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.team = Team.createInContext(context, name: self.textFieldTeamName.text, sport: "baseball")
             }
         }
-        //self.seed()
-        self.stats = self.team?.stats.allObjects as? [TeamStats]
+        self.stats = self.team?.stats.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]) as? [TeamStats]
     }
     
     private func seed() {
@@ -97,41 +130,36 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBAction func doneTapped(sender: AnyObject) {
         self.team?.name = self.textFieldTeamName.text
-        if let stats = self.stats {
-            self.team?.stats = NSSet(array: stats)
-        }
+        self.updateStatsFromTable()
         self.context?.save(nil)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func addStatTapped(sender: AnyObject) {
-        //self.tableViewStats.insertRowsAtIndexPaths([NSIndexPath(index: self.stats?.count ?? 0)], withRowAnimation: .Automatic)
-        //self.tableViewStats.selectRowAtIndexPath(NSIndexPath(index: self.stats?.count ?? 0), animated: true, scrollPosition: .Bottom)
-        let title = "Track New Stat"
-        let prompt = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
+        //let statCount = self.stats?.count ?? 1
+        //self.tableViewStats.insertRowsAtIndexPaths([NSIndexPath(forRow: statCount - 1, inSection: 0)], withRowAnimation: .Automatic)
+        //self.tableViewStats.selectRowAtIndexPath(NSIndexPath(forRow: statCount - 1, inSection: 0), animated: true, scrollPosition: .Bottom)
         
-        var statTextField: UITextField?
-        prompt.addTextFieldWithConfigurationHandler {
-            (textField) -> Void in
-            statTextField = textField
-            textField.placeholder = "Stat Name"
+        self.updateStatsFromTable()
+        if let context = self.context {
+            let newStat = TeamStats.createInContext(context, name: "", team: self.team)
+            self.stats?.append(newStat)
+            self.tableViewStats.reloadData()
+            let currentCell = self.tableViewStats.cellForRowAtIndexPath(NSIndexPath(forRow: self.stats?.count ?? 0, inSection: 0)) as? EditableTableViewCell
+            currentCell?.textField.becomeFirstResponder()
         }
-        
-        prompt.addAction(UIAlertAction(title: "Add", style: .Default, handler: {
-            (action) -> Void in
-            if let textField = statTextField,
-                let team = self.team,
-                let context = self.context
-            {
-                let stat = TeamStats.createInContext(context, name: textField.text, team: team)
-                self.stats?.append(stat)
-                self.tableViewStats.reloadData()
+    }
+    
+    // super janky way of making changes, but it works for the time being
+    private func updateStatsFromTable() {
+        if let stats = self.stats {
+            for i in 0..<stats.count {
+                let newName = (self.tableViewStats.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? EditableTableViewCell)?.textField.text
+                if newName != nil && newName != stats[i].name {
+                    stats[i].name = newName!
+                }
             }
-        }))
-        
-        prompt.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        
-        self.presentViewController(prompt, animated: true, completion: nil)
+        }
     }
     
     // MARK: UITableViewDelegate
@@ -139,15 +167,15 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         let statName = stats?[indexPath.row].name
         println(statName)
     }
+
+    // MARK: UITableViewDataSource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let rows = self.stats?.count ?? 0
         return rows
-    }
-    
-    // MARK: UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -169,17 +197,5 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.tableViewStats.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
         }
-    }
-    
-    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
-        /*let index = indexPath.row
-        let statCount = self.stats?.count
-        if index < statCount {
-            if let editedStat = self.stats?[index],
-                let cell = tableViewStats.cellForRowAtIndexPath(indexPath) as? EditableTableViewCell
-            {
-                editedStat.name = cell.textField.text
-            }
-        }*/
     }
 }
