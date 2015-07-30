@@ -25,6 +25,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         let tap = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboardOnOutsideTap"))
+        tap.delegate = self
         view.addGestureRecognizer(tap)
 
         self.tableViewStats.dataSource = self
@@ -58,15 +59,15 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        self.keyboardOffset = touch.locationInView(self.view).y - 80.0
+        return true
+    }
+    
     func dismissKeyboardOnOutsideTap() {
         self.textFieldTeamName.resignFirstResponder()
         self.textFieldTeamName.endEditing(true)
         self.tableViewStats.endEditing(true)
-    }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as? UITouch
-        self.keyboardOffset = 20.0 + (touch?.locationInView(self.view).y ?? 70.0)
     }
     
     override func didReceiveMemoryWarning() {
