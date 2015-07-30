@@ -86,7 +86,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
     
     // MARK: Data Fetching
     private func getTeam() {
-        if let context = context {
+        if let context = self.context {
             let teams = Team.getFromContext(context)
             if teams?.count > 0 {
                 self.team = teams?[0]
