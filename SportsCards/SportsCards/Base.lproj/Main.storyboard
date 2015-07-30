@@ -178,13 +178,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfO-YF-Qvc" customClass="RoundedRectButton" customModule="SportsCards" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfO-YF-Qvc" customClass="RoundedRectButton" customModule="SportsCards" customModuleProvider="target">
                                 <rect key="frame" x="499" y="88" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="MT6-xZ-hDM"/>
                                     <constraint firstAttribute="width" constant="75" id="jfs-Pq-gQb"/>
                                 </constraints>
-                                <state key="normal" image="baseball">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -198,7 +200,17 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pickSportTapped:" destination="N34-R2-OUW" eventType="touchUpInside" id="NKy-FM-EPw"/>
+                                </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Fs-lM-DmZ">
+                                <rect key="frame" x="499" y="88" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Oee-6z-cVq"/>
+                                    <constraint firstAttribute="width" constant="75" id="n2O-g6-q4y"/>
+                                </constraints>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9zh-xr-SJM">
                                 <rect key="frame" x="0.0" y="179" width="600" height="377"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -258,17 +270,36 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-7J-JCZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <pickerView alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="873-Iu-XeM">
+                                        <rect key="frame" x="140" y="220" width="320" height="162"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="873-Iu-XeM" secondAttribute="centerY" constant="-0.5" id="j9x-zu-R7l"/>
+                                    <constraint firstAttribute="centerX" secondItem="873-Iu-XeM" secondAttribute="centerX" id="zNi-Ul-zAw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="zfO-YF-Qvc" secondAttribute="trailing" constant="10" id="4Nq-k3-l80"/>
                             <constraint firstAttribute="width" secondItem="9zh-xr-SJM" secondAttribute="width" id="8a7-Dy-t1M"/>
+                            <constraint firstItem="RM2-7J-JCZ" firstAttribute="height" secondItem="NPa-mu-nBn" secondAttribute="height" id="9Pt-5g-GwR"/>
                             <constraint firstItem="MlU-V7-KMi" firstAttribute="top" secondItem="jbY-4b-XbV" secondAttribute="bottom" constant="45" id="HYk-YE-34a"/>
                             <constraint firstItem="zfO-YF-Qvc" firstAttribute="centerY" secondItem="MlU-V7-KMi" secondAttribute="centerY" constant="1" id="Ol0-SZ-hTk"/>
                             <constraint firstAttribute="centerX" secondItem="9zh-xr-SJM" secondAttribute="centerX" id="RI3-4J-O3D"/>
                             <constraint firstItem="9zh-xr-SJM" firstAttribute="top" secondItem="MlU-V7-KMi" secondAttribute="bottom" constant="40" id="Tb3-qk-ibM"/>
+                            <constraint firstItem="zfO-YF-Qvc" firstAttribute="centerY" secondItem="3Fs-lM-DmZ" secondAttribute="centerY" id="d8g-CV-wad"/>
+                            <constraint firstAttribute="centerX" secondItem="RM2-7J-JCZ" secondAttribute="centerX" id="ilc-O5-gea"/>
+                            <constraint firstItem="RM2-7J-JCZ" firstAttribute="width" secondItem="NPa-mu-nBn" secondAttribute="width" id="j3G-j9-L4P"/>
                             <constraint firstItem="G5Z-1f-PS5" firstAttribute="top" secondItem="9zh-xr-SJM" secondAttribute="bottom" id="l8I-ZU-KHj"/>
+                            <constraint firstAttribute="centerY" secondItem="RM2-7J-JCZ" secondAttribute="centerY" id="nyt-sM-JaX"/>
                             <constraint firstItem="zfO-YF-Qvc" firstAttribute="leading" secondItem="MlU-V7-KMi" secondAttribute="trailing" constant="40" id="sxS-UY-Fki"/>
+                            <constraint firstItem="zfO-YF-Qvc" firstAttribute="centerX" secondItem="3Fs-lM-DmZ" secondAttribute="centerX" id="vSq-Wg-2jq"/>
                             <constraint firstItem="MlU-V7-KMi" firstAttribute="leading" secondItem="NPa-mu-nBn" secondAttribute="leadingMargin" constant="10" id="wt8-0a-mWO"/>
                         </constraints>
                     </view>
@@ -281,174 +312,23 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="6yL-l8-cRV">
                             <connections>
-                                <action selector="doneTapped:" destination="N34-R2-OUW" id="7Oo-Lv-cnL"/>
+                                <action selector="saveTapped:" destination="N34-R2-OUW" id="B4V-Br-HBh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="buttonPickSport" destination="zfO-YF-Qvc" id="rFi-ZQ-zCc"/>
+                        <outlet property="imageViewSportPicker" destination="3Fs-lM-DmZ" id="roy-OT-KtE"/>
+                        <outlet property="pickerSport" destination="873-Iu-XeM" id="Q6F-TG-y4M"/>
                         <outlet property="tableViewStats" destination="9zh-xr-SJM" id="W4r-Bz-zUK"/>
                         <outlet property="textFieldTeamName" destination="MlU-V7-KMi" id="KCV-Ub-sn2"/>
+                        <outlet property="viewPickerCover" destination="RM2-7J-JCZ" id="xSs-gQ-EmD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZl-zj-bCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3456" y="933"/>
-        </scene>
-        <!--Pick a Sport-->
-        <scene sceneID="B95-K2-8az">
-            <objects>
-                <collectionViewController id="xl2-uU-SVq" customClass="SportCollectionCollectionViewController" customModule="SportsCards" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="sRv-Zk-MaY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="40" minimumInteritemSpacing="10" id="qWS-6a-wOb">
-                            <size key="itemSize" width="150" height="150"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SportCell" id="cmu-16-8Ar">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baseball" translatesAutoresizingMaskIntoConstraints="NO" id="KUQ-oA-bhA">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Mi-QU-g5V">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWT-ev-1Ea">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GZY-RD-MgH">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTa-19-Ke4">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qHT-N9-uQN">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQk-XA-e86">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GcF-5x-6Ga">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oVY-6k-xlM">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ndc-N2-Iec">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwY-xv-4u2">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sqt-j7-7wM">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOh-Zf-GZ5">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ywq-Kx-PKj">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-tH-unu">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bg2-2M-jRy">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DsT-zd-cD6">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="xl2-uU-SVq" id="m7x-jj-4dT"/>
-                            <outlet property="delegate" destination="xl2-uU-SVq" id="clr-kG-FVz"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Pick a Sport" id="CyY-Ts-EJG">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="sgu-hN-I0X"/>
-                    </navigationItem>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P1l-5M-8ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4928" y="933"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DsO-Cu-cid">
@@ -486,26 +366,5 @@
             </objects>
             <point key="canvasLocation" x="2644" y="933"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="duG-G7-JxP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="83K-5d-UBS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Xs-iP-bTN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xl2-uU-SVq" kind="relationship" relationship="rootViewController" id="lTB-QJ-4c5"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vIb-7n-U1r" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4116" y="933"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="baseball" width="549" height="549"/>
-    </resources>
 </document>

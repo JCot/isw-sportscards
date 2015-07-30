@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
+class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var team: Team?
@@ -18,8 +18,12 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
     private var keyboardOffset: CGFloat = 80.0
 
     // MARK: Outlets
-    @IBOutlet weak var tableViewStats: UITableView!
-    @IBOutlet weak var textFieldTeamName: UITextField!
+    @IBOutlet var tableViewStats: UITableView!
+    @IBOutlet var textFieldTeamName: UITextField!
+    @IBOutlet var pickerSport: UIPickerView!
+    @IBOutlet var buttonPickSport: RoundedRectButton!
+    @IBOutlet var viewPickerCover: UIView!
+    @IBOutlet weak var imageViewSportPicker: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +33,17 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addGestureRecognizer(tap)
 
         self.tableViewStats.dataSource = self
-        self.tableViewStats.delegate = self
+        
+        self.pickerSport.dataSource = self
+        self.pickerSport.delegate = self
         
         self.getTeam()
         self.textFieldTeamName.text = self.team?.name
+        if let image = self.team?.sportValue?.getImage() {
+            self.imageViewSportPicker.image = image
+        } else {
+            self.buttonPickSport.setTitle("Sport", forState: .Normal)
+        }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
@@ -43,7 +54,6 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         if !self.textFieldTeamName.editing {
             let rect = self.view.frame
             UIView.setAnimationDuration(0.3)
-            //rect.origin.y = rect.origin.y - self.keyboardOffset
             self.view.frame = CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect) - self.keyboardOffset, CGRectGetWidth(rect), CGRectGetHeight(rect) + self.keyboardOffset)
             self.keyboardMovedFrame = true
         }
@@ -53,7 +63,6 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         if self.keyboardMovedFrame {
             let rect = self.view.frame
             UIView.setAnimationDuration(0.3)
-            //rect.origin.y = rect.origin.y - self.keyboardOffset
             self.view.frame = CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(UIScreen.mainScreen().bounds))
             self.keyboardMovedFrame = false
         }
@@ -90,7 +99,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
             if teams?.count > 0 {
                 self.team = teams?[0]
             } else {
-                self.team = Team.createInContext(context, name: self.textFieldTeamName.text, sport: "baseball")
+                self.team = Team.createInContext(context, name: self.textFieldTeamName.text, sport: nil)
             }
         }
         self.stats = self.team?.stats.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]) as? [TeamStats]
@@ -129,11 +138,21 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func doneTapped(sender: AnyObject) {
+    @IBAction func saveTapped(sender: AnyObject) {
         self.team?.name = self.textFieldTeamName.text
+        let sport = self.team?.sport
+        let sportValue = self.team?.sportValue
         self.updateStatsFromTable()
         self.context?.save(nil)
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func pickSportTapped(sender: AnyObject) {
+        self.dismissKeyboardOnOutsideTap()
+        self.pickerSport.alpha = 1
+        self.viewPickerCover.alpha = 1
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.viewPickerCover.userInteractionEnabled = true
     }
     
     @IBAction func addStatTapped(sender: AnyObject) {
@@ -161,12 +180,6 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             }
         }
-    }
-    
-    // MARK: UITableViewDelegate
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let statName = stats?[indexPath.row].name
-        println(statName)
     }
 
     // MARK: UITableViewDataSource
@@ -198,5 +211,34 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.tableViewStats.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
         }
+    }
+    
+    // MARK: UIPickerViewDelegate
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return Sport.allSports[row].rawValue.capitalizedString
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let sport = Sport.allSports[row]
+        if let image = sport.getImage() {
+            self.imageViewSportPicker.image = image
+            self.buttonPickSport.setTitle("", forState: .Normal)
+        } else {
+            self.buttonPickSport.setTitle("Sport", forState: .Normal)
+        }
+        self.team?.sportValue = sport
+        self.pickerSport.alpha = 0
+        self.viewPickerCover.alpha = 0
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.viewPickerCover.userInteractionEnabled = false
+    }
+    
+    // MARK: UIPickerViewDataSource
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Sport.allSports.count
     }
 }
