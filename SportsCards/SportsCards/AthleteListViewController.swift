@@ -33,6 +33,8 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.getTeam()
+        self.getAthletes()
         self.navigationItem.title = self.team?.name ?? "Athletes"
     }
     
