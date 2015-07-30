@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="61r-DB-Z5T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="61r-DB-Z5T">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="159" width="600" height="441"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatValueCell" id="hly-Jb-kAh">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatValueCell" id="hly-Jb-kAh" customClass="AthleteDetailViewCell" customModule="SportsCards" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="center" tableViewCell="hly-Jb-kAh" id="HMw-f1-i4k">
@@ -40,6 +40,10 @@
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="statName" destination="G9X-RC-OaA" id="Uud-Uz-L6t"/>
+                                            <outlet property="statValueField" destination="Rjl-MB-j7g" id="dEL-4U-HjE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -92,6 +96,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="athleteDetailsTable" destination="x9b-d1-Jb5" id="T6s-uB-xaF"/>
                         <outlet property="athleteNameField" destination="kJr-0g-fyC" id="Ij3-4i-oKP"/>
                         <outlet property="athleteNumberField" destination="FWg-tn-bpL" id="jf8-X5-vy9"/>
                         <outlet property="athletePositionsField" destination="vp3-Ub-iy1" id="f0T-QJ-a7z"/>
@@ -100,7 +105,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOe-Cx-dEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8ju-05-15s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4103" y="-573"/>
+            <point key="canvasLocation" x="4147" y="-1163"/>
         </scene>
         <!--Athlete List-->
         <scene sceneID="kwV-7l-2aM">
@@ -704,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZl-zj-bCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4140" y="-474"/>
+            <point key="canvasLocation" x="4154" y="-450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DsO-Cu-cid">
@@ -740,7 +745,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPd-Up-3kW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3412" y="-474"/>
+            <point key="canvasLocation" x="3412" y="-450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Il-dC-Sje">
@@ -794,7 +799,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1Y-6c-Quv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3291" y="-573"/>
+            <point key="canvasLocation" x="3412" y="-1163"/>
         </scene>
     </scenes>
 </document>

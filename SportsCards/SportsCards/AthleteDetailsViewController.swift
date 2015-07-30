@@ -11,9 +11,11 @@ import UIKit
 class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var athlete: Athlete?
+    var stats: [AthleteStats]?
     @IBOutlet weak var athleteNameField: UITextField!
     @IBOutlet weak var athleteNumberField: UITextField!
     @IBOutlet weak var athletePositionsField: UITextField!
+    @IBOutlet weak var athleteDetailsTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,10 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         athleteNameField.text = athlete?.name
         athleteNumberField.text = athlete?.number
         
+        self.athleteDetailsTable.dataSource = self
+        self.athleteDetailsTable.delegate = self
+        
+        stats = athlete?.stats?.allObjects as! [AthleteStats]
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +51,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         var allStats = athlete?.stats?.allObjects
         var statInRow: AthleteStats = allStats?[row] as! AthleteStats
         
-        cell.statNameLabel.text = statInRow.teamStat.name
+        cell.statName.text = statInRow.teamStat.name
         cell.statValueField.text = String(stringInterpolationSegment: statInRow.value)
         
         return cell
