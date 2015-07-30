@@ -8,9 +8,13 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class CreateCardViewController: UITableViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate {
     
+    let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    //var athletes: [Athlete]?
+
     @IBOutlet weak var paramsTableView: UITableView!
     
     @IBOutlet weak var athletePicker: UIPickerView!
@@ -26,7 +30,8 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     
     let imagePicker = UIImagePickerController()
     
-    var pickerData = ["Jimmy", "Timmy", "Tommy", "Bill"]
+    var athletes = ["Jimmy", "Timmy", "Tommy", "Bill"]
+    
     var athletePickerHidden = true
     
     override func viewDidLoad() {
@@ -55,6 +60,14 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
         
+        self.getAthletes()
+    }
+    
+    private func getAthletes() {
+        if let context = context {
+            //self.athletes = Athlete.getFromContext(context)
+            self.athletes = []
+        }
     }
     
     @IBAction func selectAthleteImage(sender: AnyObject) {
@@ -83,16 +96,18 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count;
+        return athletes.count;
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return pickerData[row]
+        
+        return athletes[row]
+        
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        athleteSelectedLabel.text = pickerData[row]
+        athleteSelectedLabel.text = athletes[row]
         athleteSelectedLabel.textColor = UIColor.blackColor()
     }
     
