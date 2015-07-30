@@ -66,10 +66,27 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        let athlete =  NSEntityDescription.insertNewObjectForEntityForName("Athlete", inManagedObjectContext: self.context!) as! Athlete
-        athlete.name = addAthleteVC.athleteName
-        athlete.email = addAthleteVC.athleteEmail
-        athlete.number = addAthleteVC.athleteNumber
+        let athlete =  Athlete.createInContext(self.context!, name: addAthleteVC.athleteName, number: addAthleteVC.athleteNumber, email: addAthleteVC.athleteEmail)
+        
+        var positions = addAthleteVC.positionList
+        var positionSet: [Positions] = []
+        for var i = 0; i < positions.count; i++ {
+            var result = Positions.getFromContextByPosition(self.context!, position: positions[i])
+            
+            if(result == nil || result?.count == 0){
+                var newPosition = Positions.createInContext(self.context!, position: positions[i])
+                newPosition.athlete = NSSet(object: athlete)
+                positionSet.append(newPosition)
+            }
+            
+            else{
+                var position = result?[0]
+                var positionAthletes = position?.athlete.allObjects
+                positionAthletes?.append(athlete)
+                position?.athlete = NSSet(array: positionAthletes!)
+                positionSet.append(position!)
+            }
+        }
         
         athletes?.append(athlete)
         
