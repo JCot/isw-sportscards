@@ -20,21 +20,19 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK: Outlets
     @IBOutlet var athleteListView: UITableView!
     
+    // MARK: View Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.athleteListView.delegate = self
         self.athleteListView.dataSource = self
         
         self.getTeam()
         self.getAthletes()
-        
+}
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.navigationItem.title = self.team?.name ?? "Athletes"
     }
     
