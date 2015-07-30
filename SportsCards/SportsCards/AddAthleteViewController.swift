@@ -19,6 +19,9 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
 
     @IBOutlet weak var positions: UITableView!
 
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     var athleteName = ""
     var athleteNumber = ""
     var athleteEmail = ""
@@ -52,12 +55,16 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
         positions.delegate = self
         positions.dataSource = self
         
+        saveButton.enabled = false
+        
         //positionList = ["Add Position +"]
     }
     
     @IBAction func submit(sender: AnyObject) {
         var pos = newPosition.text;
-        positionList.append(pos)
+        if(pos != "") {
+            positionList.append(pos)
+        }
         newPosition.text = ""
         self.positions.reloadData()
     }
@@ -71,7 +78,6 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
         
         return 1
     }
-    
     
     func tableView(tableView:UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
         
@@ -88,10 +94,19 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
         number.resignFirstResponder()
         email.resignFirstResponder()
         newPosition.resignFirstResponder()
+        
+        if (name.text != "") && (number.text != "") && (email.text != "") {
+            saveButton.enabled = true
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        
+        if (name.text != "") && (number.text != "") && (email.text != "") {
+          saveButton.enabled = true
+        }
+        
         return false
     }
     

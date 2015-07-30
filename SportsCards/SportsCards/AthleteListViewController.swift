@@ -59,7 +59,6 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let name = athletes?[indexPath.row].name
-        println(name)
     }
     
     // MARK: UITableViewDataSource
