@@ -11,7 +11,8 @@ import CoreData
 
 class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    // MARK: Properties
+    private let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var team: Team?
     var stats: [TeamStats]?
     private var keyboardMovedFrame: Bool = false
@@ -86,7 +87,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGesture
     
     // MARK: Data Fetching
     private func getTeam() {
-        if let context = context {
+        if let context = self.context {
             let teams = Team.getFromContext(context)
             if teams?.count > 0 {
                 self.team = teams?[0]
