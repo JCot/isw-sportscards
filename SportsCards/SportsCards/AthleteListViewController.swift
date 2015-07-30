@@ -55,7 +55,6 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             self.athletes = Athlete.getFromContextByTeam(context, team: self.team)
         }
     }
-    
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let name = athletes?[indexPath.row].name
@@ -74,8 +73,8 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AthleteCell") as! UITableViewCell
         
-        cell.textLabel?.text = athletes?[indexPath.row].name
-        cell.detailTextLabel?.text = athletes?[indexPath.row].number
+        cell.textLabel?.text = self.athletes?[indexPath.row].name
+        cell.detailTextLabel?.text = self.athletes?[indexPath.row].number
         return cell
     }
     
@@ -86,7 +85,7 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK: Segue functions
     @IBAction func cancel(segue:UIStoryboardSegue) {
         self.context?.rollback()
-        var athleteDetailVC = segue.sourceViewController as! AddAthleteViewController
+        //var athleteDetailVC = segue.sourceViewController as! AddAthleteViewController
     }
     
     @IBAction func save(segue:UIStoryboardSegue) {
@@ -119,11 +118,39 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             athlete.position = NSSet(array: positionSet)
+            
+            var stats: [TeamStats]? = TeamStats.getFromContext(self.context!)
+            var athleteStats: [AthleteStats] = []
+            for var i = 0; i < stats?.count ?? 0; i++ {
+                var stat = stats?[i]
+                if(stat != nil) {
+                    var newAthleteStat = AthleteStats.createInContext(self.context!, value: 0.0, teamStat: stat!, athlete: athlete)
+                    athleteStats.append(newAthleteStat)
+                }
+            }
+            
+            athlete.stats = NSSet(array: athleteStats)
+            
             athletes?.append(athlete)
             
             let indexPath = NSIndexPath(forRow: (athletes?.count ?? 1) - 1, inSection: 0)
             athleteListView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             self.context?.save(nil)
+        }
+    }
+    
+    @IBAction func saveAthleteDetails(segue:UIStoryboardSegue) {
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showAthleteDetails" {
+            var navController = segue.destinationViewController as! UINavigationController
+            var showDetailVC = navController.topViewController as! AthleteDetailsViewController
+            let indexPath = self.athleteListView.indexPathForSelectedRow()
+            var row = indexPath?.row
+            var currentAthlete = athletes?[row!]
+            showDetailVC.athlete = currentAthlete
         }
     }
 }
