@@ -91,6 +91,7 @@ class TeamInfoViewController: UIViewController, UITableViewDataSource, UITableVi
     */
 
     @IBAction func cancelTapped(sender: AnyObject) {
+        self.context?.rollback()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
