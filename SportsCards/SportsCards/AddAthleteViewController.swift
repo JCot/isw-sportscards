@@ -57,7 +57,9 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
     
     @IBAction func submit(sender: AnyObject) {
         var pos = newPosition.text;
-        positionList.append(pos)
+        if(pos != "") {
+            positionList.append(pos)
+        }
         newPosition.text = ""
         self.positions.reloadData()
     }
