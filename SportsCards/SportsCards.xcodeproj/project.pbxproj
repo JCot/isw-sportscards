@@ -152,6 +152,7 @@
 			children = (
 				5B3829A31B6954B9006E54F7 /* RoundedRectButton.swift */,
 				5B3829AB1B6965C7006E54F7 /* EditableTableViewCell.swift */,
+				D66B5AD71B695E8300D744A0 /* TextInputTableViewCell.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";

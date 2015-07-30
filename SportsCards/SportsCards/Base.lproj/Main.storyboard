@@ -429,13 +429,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfO-YF-Qvc" customClass="RoundedRectButton" customModule="SportsCards" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfO-YF-Qvc" customClass="RoundedRectButton" customModule="SportsCards" customModuleProvider="target">
                                 <rect key="frame" x="499" y="88" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="MT6-xZ-hDM"/>
                                     <constraint firstAttribute="width" constant="75" id="jfs-Pq-gQb"/>
                                 </constraints>
-                                <state key="normal" image="baseball">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -449,9 +451,19 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pickSportTapped:" destination="N34-R2-OUW" eventType="touchUpInside" id="NKy-FM-EPw"/>
+                                </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Fs-lM-DmZ">
+                                <rect key="frame" x="499" y="88" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Oee-6z-cVq"/>
+                                    <constraint firstAttribute="width" constant="75" id="n2O-g6-q4y"/>
+                                </constraints>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9zh-xr-SJM">
-                                <rect key="frame" x="0.0" y="214" width="600" height="342"/>
+                                <rect key="frame" x="0.0" y="179" width="600" height="377"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="ekU-fT-k6O">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -471,6 +483,9 @@
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="addStatTapped:" destination="N34-R2-OUW" eventType="touchUpInside" id="uBQ-p2-tvF"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -488,7 +503,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bvh-2p-0Q8" id="Sp6-XF-fCu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="stat name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-vz-0gh">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Stat Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-vz-0gh">
                                                     <rect key="frame" x="18" y="8" width="584" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -506,17 +521,36 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RM2-7J-JCZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <pickerView alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="873-Iu-XeM">
+                                        <rect key="frame" x="140" y="220" width="320" height="162"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="873-Iu-XeM" secondAttribute="centerY" constant="-0.5" id="j9x-zu-R7l"/>
+                                    <constraint firstAttribute="centerX" secondItem="873-Iu-XeM" secondAttribute="centerX" id="zNi-Ul-zAw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="zfO-YF-Qvc" secondAttribute="trailing" constant="10" id="4Nq-k3-l80"/>
                             <constraint firstAttribute="width" secondItem="9zh-xr-SJM" secondAttribute="width" id="8a7-Dy-t1M"/>
+                            <constraint firstItem="RM2-7J-JCZ" firstAttribute="height" secondItem="NPa-mu-nBn" secondAttribute="height" id="9Pt-5g-GwR"/>
                             <constraint firstItem="MlU-V7-KMi" firstAttribute="top" secondItem="jbY-4b-XbV" secondAttribute="bottom" constant="45" id="HYk-YE-34a"/>
                             <constraint firstItem="zfO-YF-Qvc" firstAttribute="centerY" secondItem="MlU-V7-KMi" secondAttribute="centerY" constant="1" id="Ol0-SZ-hTk"/>
                             <constraint firstAttribute="centerX" secondItem="9zh-xr-SJM" secondAttribute="centerX" id="RI3-4J-O3D"/>
-                            <constraint firstItem="9zh-xr-SJM" firstAttribute="top" secondItem="MlU-V7-KMi" secondAttribute="bottom" constant="75" id="Tb3-qk-ibM"/>
+                            <constraint firstItem="9zh-xr-SJM" firstAttribute="top" secondItem="MlU-V7-KMi" secondAttribute="bottom" constant="40" id="Tb3-qk-ibM"/>
+                            <constraint firstItem="zfO-YF-Qvc" firstAttribute="centerY" secondItem="3Fs-lM-DmZ" secondAttribute="centerY" id="d8g-CV-wad"/>
+                            <constraint firstAttribute="centerX" secondItem="RM2-7J-JCZ" secondAttribute="centerX" id="ilc-O5-gea"/>
+                            <constraint firstItem="RM2-7J-JCZ" firstAttribute="width" secondItem="NPa-mu-nBn" secondAttribute="width" id="j3G-j9-L4P"/>
                             <constraint firstItem="G5Z-1f-PS5" firstAttribute="top" secondItem="9zh-xr-SJM" secondAttribute="bottom" id="l8I-ZU-KHj"/>
+                            <constraint firstAttribute="centerY" secondItem="RM2-7J-JCZ" secondAttribute="centerY" id="nyt-sM-JaX"/>
                             <constraint firstItem="zfO-YF-Qvc" firstAttribute="leading" secondItem="MlU-V7-KMi" secondAttribute="trailing" constant="40" id="sxS-UY-Fki"/>
+                            <constraint firstItem="zfO-YF-Qvc" firstAttribute="centerX" secondItem="3Fs-lM-DmZ" secondAttribute="centerX" id="vSq-Wg-2jq"/>
                             <constraint firstItem="MlU-V7-KMi" firstAttribute="leading" secondItem="NPa-mu-nBn" secondAttribute="leadingMargin" constant="10" id="wt8-0a-mWO"/>
                         </constraints>
                     </view>
@@ -529,13 +563,18 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="6yL-l8-cRV">
                             <connections>
-                                <action selector="doneTapped:" destination="N34-R2-OUW" id="7Oo-Lv-cnL"/>
+                                <action selector="saveTapped:" destination="N34-R2-OUW" id="B4V-Br-HBh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="buttonPickSport" destination="zfO-YF-Qvc" id="rFi-ZQ-zCc"/>
+                        <outlet property="imageViewSportPicker" destination="3Fs-lM-DmZ" id="roy-OT-KtE"/>
+                        <outlet property="pickerSport" destination="873-Iu-XeM" id="Q6F-TG-y4M"/>
                         <outlet property="tableViewStats" destination="9zh-xr-SJM" id="W4r-Bz-zUK"/>
+                        <outlet property="textFieldTeamName" destination="MlU-V7-KMi" id="KCV-Ub-sn2"/>
+                        <outlet property="viewPickerCover" destination="RM2-7J-JCZ" id="xSs-gQ-EmD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZl-zj-bCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -615,7 +654,4 @@
             <point key="canvasLocation" x="4147" y="994"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="baseball" width="549" height="549"/>
-    </resources>
 </document>
