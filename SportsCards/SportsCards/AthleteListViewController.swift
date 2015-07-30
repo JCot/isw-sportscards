@@ -13,7 +13,7 @@ import CoreData
 class AthleteListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
-    let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    private let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var team: Team?
     var athletes: [Athlete]?
     
@@ -89,8 +89,6 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     @IBAction func save(segue:UIStoryboardSegue) {
         
         var addAthleteVC = segue.sourceViewController as! AddAthleteViewController
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         if let context = self.context,
             let team = self.team

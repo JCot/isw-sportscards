@@ -11,7 +11,8 @@ import CoreData
 
 class TeamInfoViewController: UIViewController, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    // MARK: Properties
+    private let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var team: Team?
     var stats: [TeamStats]?
     private var keyboardMovedFrame: Bool = false
