@@ -25,10 +25,22 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         athleteNameField.text = athlete?.name
         athleteNumberField.text = athlete?.number
         
+        var positions: [Positions]? = athlete?.position.allObjects as? [Positions]
+        var positionsString = ""
+        for var i = 0; i < positions?.count ?? 0; i++ {
+            positionsString += positions?[i].position ?? ""
+            
+            if(i < (positions?.count ?? 0) - 2){
+                positionsString += ", "
+            }
+        }
+        
+        athletePositionsField.text = positionsString
+        
         self.athleteDetailsTable.dataSource = self
         self.athleteDetailsTable.delegate = self
         
-        stats = athlete?.stats?.allObjects as! [AthleteStats]
+        stats = athlete?.stats?.allObjects as? [AthleteStats]
     }
 
     override func didReceiveMemoryWarning() {
