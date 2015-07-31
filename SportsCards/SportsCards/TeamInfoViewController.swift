@@ -46,7 +46,7 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         if let image = self.team?.sportValue?.getImage() {
             self.imageViewSportPicker.image = image
         } else {
-            self.buttonPickSport.setTitle("⚪", forState: .Normal)
+            self.buttonPickSport.setTitle("Sport", forState: .Normal)
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)

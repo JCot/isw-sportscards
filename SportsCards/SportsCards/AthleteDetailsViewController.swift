@@ -11,9 +11,11 @@ import UIKit
 class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var athlete: Athlete?
+    var stats: [AthleteStats]?
     @IBOutlet weak var athleteNameField: UITextField!
     @IBOutlet weak var athleteNumberField: UITextField!
     @IBOutlet weak var athletePositionsField: UITextField!
+    @IBOutlet weak var tableViewStats: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +26,29 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         athleteNumberField.text = athlete?.number
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // super janky way of making changes, but it works for the time being
+    private func updateStatsFromTable() {
+        if let stats = self.stats {
+            for i in 0..<stats.count {
+                let cell = self.tableViewStats.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? AthleteDetailViewCell
+                let valueString = cell?.statValueField.text ?? ""
+                let newValue = NSString(string: valueString).doubleValue
+                if newValue != stats[i].value {
+                    stats[i].value = newValue
+                }
+            }
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -35,7 +56,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rows = self.athlete?.stats?.count ?? 0
+        let rows = self.stats?.count ?? 0
         return rows
     }
     
@@ -66,4 +87,11 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     }
     */
 
+    @IBAction func cancelTapped(sender: AnyObject) {
+
+    }
+    
+    @IBAction func saveTapped(sender: AnyObject) {
+        self.updateStatsFromTable()
+    }
 }

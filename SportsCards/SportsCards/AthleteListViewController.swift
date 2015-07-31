@@ -139,8 +139,16 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    // TODO: figure out what things will be saved first in the other view
     @IBAction func saveAthleteDetails(segue:UIStoryboardSegue) {
+        var athleteDetailVC = segue.sourceViewController as! AthleteDetailsViewController
         
+        if let context = self.context,
+            let athlete = athleteDetailVC.athlete,
+            let stats = athleteDetailVC.stats
+        {
+                athlete.stats = NSSet(array: stats)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

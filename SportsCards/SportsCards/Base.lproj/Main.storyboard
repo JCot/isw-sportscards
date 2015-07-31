@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="159" width="600" height="441"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatValueCell" id="hly-Jb-kAh">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatValueCell" id="hly-Jb-kAh" customClass="AthleteDetailViewCell" customModule="SportsCards" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="center" tableViewCell="hly-Jb-kAh" id="HMw-f1-i4k">
@@ -40,6 +40,10 @@
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="statNameLabel" destination="G9X-RC-OaA" id="ZSN-q9-3jK"/>
+                                            <outlet property="statValueField" destination="Rjl-MB-j7g" id="EAQ-dS-5gG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -80,14 +84,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Athlete Details" id="i1I-zf-gfZ">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Xhx-By-MnP">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Xhx-By-MnP">
                             <connections>
-                                <segue destination="8ju-05-15s" kind="unwind" identifier="cancelFromAthleteDetails" unwindAction="cancel:" id="iIi-uZ-fZY"/>
+                                <action selector="cancelTapped:" destination="UM1-kq-0AA" id="Xe2-VO-IQ8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="IWG-cZ-cgX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IWG-cZ-cgX">
                             <connections>
-                                <segue destination="8ju-05-15s" kind="unwind" identifier="saveAthleteDetails" unwindAction="saveAthleteDetails:" id="lY7-2o-tf8"/>
+                                <action selector="saveTapped:" destination="UM1-kq-0AA" id="hGq-P9-vK0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -95,12 +99,14 @@
                         <outlet property="athleteNameField" destination="kJr-0g-fyC" id="Ij3-4i-oKP"/>
                         <outlet property="athleteNumberField" destination="FWg-tn-bpL" id="jf8-X5-vy9"/>
                         <outlet property="athletePositionsField" destination="vp3-Ub-iy1" id="f0T-QJ-a7z"/>
+                        <outlet property="tableViewStats" destination="x9b-d1-Jb5" id="iAH-xE-h0n"/>
+                        <segue destination="8ju-05-15s" kind="unwind" unwindAction="saveAthleteDetails:" id="TI6-cE-37p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOe-Cx-dEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8ju-05-15s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4103" y="-573"/>
+            <point key="canvasLocation" x="4147" y="-1135"/>
         </scene>
         <!--Athlete List-->
         <scene sceneID="kwV-7l-2aM">
@@ -481,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YRf-WN-Bfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4147" y="1726"/>
+            <point key="canvasLocation" x="3422" y="1762"/>
         </scene>
         <!--Choose Statistics-->
         <scene sceneID="GT8-iV-lyy">
@@ -712,7 +718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZl-zj-bCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4140" y="-474"/>
+            <point key="canvasLocation" x="4140" y="-442"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DsO-Cu-cid">
@@ -748,7 +754,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPd-Up-3kW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3412" y="-474"/>
+            <point key="canvasLocation" x="3412" y="-442"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Il-dC-Sje">
@@ -802,7 +808,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1Y-6c-Quv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3291" y="-573"/>
+            <point key="canvasLocation" x="3412" y="-1135"/>
         </scene>
     </scenes>
 </document>
