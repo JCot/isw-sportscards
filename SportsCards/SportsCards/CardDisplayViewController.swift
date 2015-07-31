@@ -33,6 +33,7 @@ class CardDisplayViewController : UIViewController, MFMailComposeViewControllerD
     var number = ""
     var statsArr = [String]()
     var valuesArr = [String]()
+    var email = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,9 +117,9 @@ class CardDisplayViewController : UIViewController, MFMailComposeViewControllerD
         
         var mailController = MFMailComposeViewController()
         mailController.mailComposeDelegate = self
-        mailController.setSubject("Card from your coach:")
-        mailController.setMessageBody("Hey Athlete, here's a sports card I created that's got your name on it!", isHTML: false)
-        mailController.setToRecipients(["alexgrn7@gmail.com"])
+        mailController.setSubject("Card from your coach")
+        mailController.setMessageBody("Hey \(name), here's a sports card I created that's got your name on it!", isHTML: false)
+        mailController.setToRecipients([email])
         
         var imageData = UIImagePNGRepresentation(image)
         mailController.addAttachmentData(imageData, mimeType: "image/png", fileName: "image")

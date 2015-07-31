@@ -97,14 +97,16 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     }
     
     private func getSelectedAthleteData() {
-        var pos: [Positions]? = athlete?.position.sortedArrayUsingDescriptors([NSSortDescriptor(key: "position", ascending: true)]) as? [Positions]
-        for var i = 0; i < pos?.count ?? 0; i++ {
-            positions += pos?[i].position ?? ""
+        var positions: [Positions]? = athlete?.position.sortedArrayUsingDescriptors([NSSortDescriptor(key: "position", ascending: true)]) as? [Positions]
+        var positionsString = ""
+        for var i = 0; i < positions?.count ?? 0; i++ {
+            positionsString += positions?[i].position ?? ""
             
-            if(i < (pos?.count ?? 0) - 1){
-                positions += ", "
+            if(i < (positions?.count ?? 0) - 1){
+                positionsString += ", "
             }
         }
+        self.positions = positionsString
         athleteNumber = athlete!.number
     }
 
@@ -285,6 +287,7 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
             cardDisplayVC.number = athleteNumber
             cardDisplayVC.statsArr = statsArr
             cardDisplayVC.valuesArr = valuesArr
+            cardDisplayVC.email = athlete?.email ?? ""
         }
         
     }
