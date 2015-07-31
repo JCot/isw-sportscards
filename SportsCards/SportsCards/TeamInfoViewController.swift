@@ -41,6 +41,8 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         self.pickerSport.delegate = self
         
         self.stats = self.team?.stats.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]) as? [TeamStats]
+        let font = UIFont(descriptor: UIFontDescriptor(name: "League Gothic", size: CGFloat(30)), size: CGFloat(30))
+        self.textFieldTeamName.font = font
         self.textFieldTeamName.text = self.team?.name
         if let image = self.team?.sportValue?.getImage() {
             self.imageViewSportPicker.image = image
