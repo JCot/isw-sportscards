@@ -21,35 +21,34 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
-        athleteNameField.text = athlete?.name
-        athleteNumberField.text = athlete?.number
-        athleteEmailField.text = athlete?.email
+        self.setupView()
         
         self.athleteDetailsTable.dataSource = self
         self.athleteDetailsTable.delegate = self
-        
-        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        self.setupView()
+    }
+    
+    private func setupView() {
         athleteNameField.text = athlete?.name
         athleteNumberField.text = athlete?.number
         athleteEmailField.text = athlete?.email
+        self.getPositionString()
         
         self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
         self.athleteDetailsTable.reloadData()
     }
     
     private func getPositionString() {
-        var positions: [Positions]? = athlete?.position.allObjects as? [Positions]
+        var positions: [Positions]? = athlete?.position.sortedArrayUsingDescriptors([NSSortDescriptor(key: "position", ascending: true)]) as? [Positions]
         var positionsString = ""
         for var i = 0; i < positions?.count ?? 0; i++ {
             positionsString += positions?[i].position ?? ""
             
-            if(i < (positions?.count ?? 0) - 2){
+            if(i < (positions?.count ?? 0) - 1){
                 positionsString += ", "
             }
         }
