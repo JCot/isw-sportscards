@@ -102,12 +102,4 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         // Pass the selected object to the new view controller.
     }
     */
-
-    @IBAction func cancelTapped(sender: AnyObject) {
-
-    }
-    
-    @IBAction func saveTapped(sender: AnyObject) {
-        self.updateStatsFromTable()
-    }
 }

@@ -35,6 +35,7 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidAppear(animated)
         self.getTeam()
         self.getAthletes()
+        self.athleteListView.reloadData()
         self.navigationItem.title = self.team?.name ?? "Athletes"
     }
     
@@ -147,7 +148,26 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
             let athlete = athleteDetailVC.athlete,
             let stats = athleteDetailVC.stats
         {
-                athlete.stats = NSSet(array: stats)
+            athlete.name = athleteDetailVC.athleteNameField.text
+            athlete.number = athleteDetailVC.athleteNumberField.text
+            let seguePositions = athleteDetailVC.athletePositionsField.text.componentsSeparatedByString(", ")
+            var newPositions: [Positions] = []
+            var existingPositions = athlete.position.allObjects as? [Positions]
+            var existingPositionNames = existingPositions?.map {
+                (var position) -> String in
+                return position.position
+            }
+            for positionName in seguePositions {
+                if !contains(existingPositionNames!, positionName) {
+                    let newPosition = Positions.createInContext(context, position: positionName)
+                    newPosition.athlete = NSSet(object: athlete)
+                    existingPositions?.append(newPosition)
+                }
+            }
+            athlete.position = NSSet(array: newPositions)
+            athlete.stats = NSSet(array: stats)
+            
+            self.context?.save(nil)
         }
     }
     
