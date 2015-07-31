@@ -62,6 +62,12 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         self.getAthletes()
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
     private func getAthletes() {
         if let context = context {
             self.athletes = Athlete.getFromContext(context)

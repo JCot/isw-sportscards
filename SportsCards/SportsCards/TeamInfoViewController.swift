@@ -12,7 +12,7 @@ import CoreData
 class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: Properties
-    private let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var context: NSManagedObjectContext?
     var team: Team?
     var stats: [TeamStats]?
     private var keyboardMovedFrame: Bool = false
@@ -23,11 +23,10 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
     @IBOutlet var textFieldTeamName: UITextField!
     @IBOutlet var pickerSport: UIPickerView!
     @IBOutlet var buttonPickSport: RoundedRectButton!
+    @IBOutlet var cancelButton: UIBarButtonItem!
+    @IBOutlet var saveButton: UIBarButtonItem!
     @IBOutlet var viewPickerCover: UIView!
-    @IBOutlet weak var imageViewSportPicker: UIImageView!
-    
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet var imageViewSportPicker: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +40,7 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         self.pickerSport.dataSource = self
         self.pickerSport.delegate = self
         
-        self.getTeam()
+        self.stats = self.team?.stats.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]) as? [TeamStats]
         self.textFieldTeamName.text = self.team?.name
         if let image = self.team?.sportValue?.getImage() {
             self.imageViewSportPicker.image = image
@@ -51,6 +50,12 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     // MARK: Keyboard Manipulation
@@ -91,19 +96,6 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
-    }
-    
-    // MARK: Data Fetching
-    private func getTeam() {
-        if let context = self.context {
-            let teams = Team.getFromContext(context)
-            if teams?.count > 0 {
-                self.team = teams?[0]
-            } else {
-                self.team = Team.createInContext(context, name: self.textFieldTeamName.text, sport: nil)
-            }
-        }
-        self.stats = self.team?.stats.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]) as? [TeamStats]
     }
 
     // MARK: - Navigation
