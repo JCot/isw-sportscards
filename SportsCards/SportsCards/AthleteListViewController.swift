@@ -80,7 +80,18 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            if let athleteToDelete = self.athletes?[indexPath.row] {
+                context?.deleteObject(athleteToDelete)
+                self.athletes?.removeAtIndex(indexPath.row)
+                self.athleteListView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                context?.save(nil)
+            }
+        }
     }
     
     // MARK: Segue functions

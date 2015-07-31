@@ -169,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAS-za-WU6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAS-za-WU6">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -212,9 +212,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="lAS-za-WU6" secondAttribute="centerX" id="MwZ-Tr-NgO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MyO-iN-eDf" secondAttribute="trailing" constant="20" id="TMr-2r-qLt"/>
                             <constraint firstItem="ynd-8J-yWA" firstAttribute="top" secondItem="MyO-iN-eDf" secondAttribute="bottom" constant="20" id="VIv-D6-wTB"/>
                             <constraint firstItem="MyO-iN-eDf" firstAttribute="leading" secondItem="vC9-lj-7uA" secondAttribute="leadingMargin" constant="20" id="vlJ-aV-Fh4"/>
+                            <constraint firstItem="lAS-za-WU6" firstAttribute="width" secondItem="vC9-lj-7uA" secondAttribute="width" id="y0T-fK-saX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Athlete List" id="qdh-Rw-tYt">
