@@ -133,10 +133,23 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         self.updateStatsFromTable()
         if let context = self.context {
             let newStat = TeamStats.createInContext(context, name: "", team: self.team)
+            updateAthletes(newStat)
             self.stats?.append(newStat)
             self.tableViewStats.reloadData()
             let currentCell = self.tableViewStats.cellForRowAtIndexPath(NSIndexPath(forRow: self.stats?.count ?? 0, inSection: 0)) as? EditableTableViewCell
             currentCell?.textField.becomeFirstResponder()
+        }
+    }
+    
+    private func updateAthletes(newStat: TeamStats){
+        if let athletes: [Athlete]? = team?.athletes?.allObjects as? [Athlete]{
+            for var i = 0; i < athletes?.count ?? 0; i++ {
+                var athlete = athletes?[i]
+                var currStats = athlete?.stats?.allObjects
+                var newAthleteStat = AthleteStats.createInContext(context!, value: 0.0, teamStat: newStat, athlete: athlete!)
+                currStats?.append(newAthleteStat)
+                athlete?.stats = NSSet(array: currStats!)
+            }
         }
     }
     

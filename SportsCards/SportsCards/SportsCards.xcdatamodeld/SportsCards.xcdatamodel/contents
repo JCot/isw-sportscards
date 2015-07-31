@@ -25,7 +25,7 @@
     </entity>
     <entity name="TeamStats" representedClassName="SportsCards.TeamStats" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="athleteStats" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="teamStat" inverseEntity="AthleteStats" syncable="YES"/>
+        <relationship name="athleteStats" toMany="YES" deletionRule="Cascade" destinationEntity="AthleteStats" inverseName="teamStat" inverseEntity="AthleteStats" syncable="YES"/>
         <relationship name="team" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="stats" inverseEntity="Team" syncable="YES"/>
     </entity>
     <elements>
