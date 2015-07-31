@@ -72,10 +72,10 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AthleteCell") as! UITableViewCell
-        
-        cell.textLabel?.text = self.athletes?[indexPath.row].name
-        cell.detailTextLabel?.text = self.athletes?[indexPath.row].number
+        let cell = tableView.dequeueReusableCellWithIdentifier("AthleteCell") as! AthleteListTableViewCell
+        let athlete = self.athletes?[indexPath.row]
+        cell.labelName.text = athlete?.name
+        cell.labelNumber.text = athlete?.number
         return cell
     }
     

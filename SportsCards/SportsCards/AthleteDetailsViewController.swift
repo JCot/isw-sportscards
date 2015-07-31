@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     var athlete: Athlete?
     var stats: [AthleteStats]?
@@ -17,14 +17,23 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet var athleteEmailField: UITextField!
     @IBOutlet var athletePositionsField: UITextField!
     @IBOutlet var athleteDetailsTable: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupView()
         
+        self.athleteNameField.delegate = self
+        self.athleteNumberField.delegate = self
+        self.athleteEmailField.delegate = self
+        self.athletePositionsField.delegate = self
+        
         self.athleteDetailsTable.dataSource = self
         self.athleteDetailsTable.delegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboardOnOutsideTap:"))
+        view.addGestureRecognizer(tap)
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -101,6 +110,18 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         return false
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return false
+    }
+    
+    func dismissKeyboardOnOutsideTap(recognizer: UITapGestureRecognizer) {
+        athleteNameField.resignFirstResponder()
+        athleteNumberField.resignFirstResponder()
+        athleteEmailField.resignFirstResponder()
+        athletePositionsField.resignFirstResponder()
+    }
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
