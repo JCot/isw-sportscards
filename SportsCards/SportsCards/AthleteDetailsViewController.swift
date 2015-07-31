@@ -15,7 +15,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var athleteNameField: UITextField!
     @IBOutlet weak var athleteNumberField: UITextField!
     @IBOutlet weak var athletePositionsField: UITextField!
-    @IBOutlet weak var tableViewStats: UITableView!
+    @IBOutlet weak var athleteDetailsTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,22 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         athleteNameField.text = athlete?.name
         athleteNumberField.text = athlete?.number
         
+        var positions: [Positions]? = athlete?.position.allObjects as? [Positions]
+        var positionsString = ""
+        for var i = 0; i < positions?.count ?? 0; i++ {
+            positionsString += positions?[i].position ?? ""
+            
+            if(i < (positions?.count ?? 0) - 2){
+                positionsString += ", "
+            }
+        }
+        
+        athletePositionsField.text = positionsString
+        
+        self.athleteDetailsTable.dataSource = self
+        self.athleteDetailsTable.delegate = self
+        
+        stats = athlete?.stats?.allObjects as? [AthleteStats]
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -41,7 +57,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     private func updateStatsFromTable() {
         if let stats = self.stats {
             for i in 0..<stats.count {
-                let cell = self.tableViewStats.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? AthleteDetailViewCell
+                let cell = self.athleteDetailsTable.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? AthleteDetailViewCell
                 let valueString = cell?.statValueField.text ?? ""
                 let newValue = NSString(string: valueString).doubleValue
                 if newValue != stats[i].value {
@@ -66,7 +82,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         var allStats = athlete?.stats?.allObjects
         var statInRow: AthleteStats = allStats?[row] as! AthleteStats
         
-        cell.statNameLabel.text = statInRow.teamStat.name
+        cell.statName.text = statInRow.teamStat.name
         cell.statValueField.text = String(stringInterpolationSegment: statInRow.value)
         
         return cell
