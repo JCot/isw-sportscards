@@ -5,7 +5,7 @@
 * Cards by Henry Ryder from the Noun Project
 * Baseball by Ryan Choi from the Noun Project
 
-## Sports Icons
+### Sports Icons
 * Basketball by Ainsley Wagoner from the Noun Projectc
 * Football by Michael Thompson from the Noun Project
 * Tennis Ball by Creative Stall from the Noun Project
