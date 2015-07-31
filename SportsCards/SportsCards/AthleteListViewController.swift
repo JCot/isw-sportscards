@@ -72,15 +72,26 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AthleteCell") as! UITableViewCell
-        
-        cell.textLabel?.text = self.athletes?[indexPath.row].name
-        cell.detailTextLabel?.text = self.athletes?[indexPath.row].number
+        let cell = tableView.dequeueReusableCellWithIdentifier("AthleteCell") as! AthleteListTableViewCell
+        let athlete = self.athletes?[indexPath.row]
+        cell.labelName.text = athlete?.name
+        cell.labelNumber.text = athlete?.number
         return cell
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            if let athleteToDelete = self.athletes?[indexPath.row] {
+                context?.deleteObject(athleteToDelete)
+                self.athletes?.removeAtIndex(indexPath.row)
+                self.athleteListView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                context?.save(nil)
+            }
+        }
     }
     
     // MARK: Segue functions
@@ -192,12 +203,17 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAthleteDetails" {
-            var navController = segue.destinationViewController as! UINavigationController
-            var showDetailVC = navController.topViewController as! AthleteDetailsViewController
+            let navController = segue.destinationViewController as! UINavigationController
+            let showDetailVC = navController.topViewController as! AthleteDetailsViewController
             let indexPath = self.athleteListView.indexPathForSelectedRow()
-            var row = indexPath?.row
-            var currentAthlete = athletes?[row!]
+            let row = indexPath?.row
+            let currentAthlete = athletes?[row!]
             showDetailVC.athlete = currentAthlete
+        } else if segue.identifier == "teamInfoSegue" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let teamInfoVC = navController.topViewController as! TeamInfoViewController
+            teamInfoVC.team = self.team ?? Team.createInContext(context!, name: "", sport: nil)
+            teamInfoVC.context = self.context
         }
     }
 }
