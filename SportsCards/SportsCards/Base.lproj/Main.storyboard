@@ -289,7 +289,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lAS-za-WU6">
-                                <rect key="frame" x="0.0" y="2" width="600" height="528"/>
+                                <rect key="frame" x="0.0" y="2" width="600" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.35072920000000002" green="0.47477006370000002" blue="0.71944746179999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -338,9 +338,9 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyO-iN-eDf">
-                                <rect key="frame" x="0.0" y="530" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="fYG-h0-QpK"/>
+                                    <constraint firstAttribute="height" constant="60" id="fYG-h0-QpK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="30"/>
                                 <state key="normal" title="Card Creator">
@@ -357,7 +357,7 @@
                             <constraint firstItem="lAS-za-WU6" firstAttribute="top" secondItem="Vao-NY-GJN" secondAttribute="bottom" constant="-62" id="9am-HA-lEN"/>
                             <constraint firstAttribute="centerX" secondItem="lAS-za-WU6" secondAttribute="centerX" id="MwZ-Tr-NgO"/>
                             <constraint firstItem="MyO-iN-eDf" firstAttribute="top" secondItem="lAS-za-WU6" secondAttribute="bottom" id="TiY-VL-zCS"/>
-                            <constraint firstItem="ynd-8J-yWA" firstAttribute="top" secondItem="MyO-iN-eDf" secondAttribute="bottom" constant="20" id="VIv-D6-wTB"/>
+                            <constraint firstItem="ynd-8J-yWA" firstAttribute="top" secondItem="MyO-iN-eDf" secondAttribute="bottom" id="VIv-D6-wTB"/>
                             <constraint firstAttribute="width" secondItem="MyO-iN-eDf" secondAttribute="width" id="hje-nB-pKa"/>
                             <constraint firstAttribute="centerX" secondItem="MyO-iN-eDf" secondAttribute="centerX" id="xb8-z3-iQR"/>
                             <constraint firstItem="lAS-za-WU6" firstAttribute="width" secondItem="vC9-lj-7uA" secondAttribute="width" id="y0T-fK-saX"/>
