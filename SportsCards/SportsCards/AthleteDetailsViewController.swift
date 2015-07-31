@@ -12,40 +12,48 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     
     var athlete: Athlete?
     var stats: [AthleteStats]?
-    @IBOutlet weak var athleteNameField: UITextField!
-    @IBOutlet weak var athleteNumberField: UITextField!
-    @IBOutlet weak var athletePositionsField: UITextField!
-    @IBOutlet weak var athleteDetailsTable: UITableView!
+    @IBOutlet var athleteNameField: UITextField!
+    @IBOutlet var athleteNumberField: UITextField!
+    @IBOutlet var athleteEmailField: UITextField!
+    @IBOutlet var athletePositionsField: UITextField!
+    @IBOutlet var athleteDetailsTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.setupView()
         
+        self.athleteDetailsTable.dataSource = self
+        self.athleteDetailsTable.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.setupView()
+    }
+    
+    private func setupView() {
         athleteNameField.text = athlete?.name
         athleteNumberField.text = athlete?.number
+        athleteEmailField.text = athlete?.email
+        self.getPositionString()
         
-        var positions: [Positions]? = athlete?.position.allObjects as? [Positions]
+        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
+        self.athleteDetailsTable.reloadData()
+    }
+    
+    private func getPositionString() {
+        var positions: [Positions]? = athlete?.position.sortedArrayUsingDescriptors([NSSortDescriptor(key: "position", ascending: true)]) as? [Positions]
         var positionsString = ""
         for var i = 0; i < positions?.count ?? 0; i++ {
             positionsString += positions?[i].position ?? ""
             
-            if(i < (positions?.count ?? 0) - 2){
+            if(i < (positions?.count ?? 0) - 1){
                 positionsString += ", "
             }
         }
         
         athletePositionsField.text = positionsString
-        
-        self.athleteDetailsTable.dataSource = self
-        self.athleteDetailsTable.delegate = self
-        
-        stats = athlete?.stats?.allObjects as? [AthleteStats]
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +92,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         
         cell.statName.text = statInRow.teamStat.name
         cell.statValueField.text = String(stringInterpolationSegment: statInRow.value)
+        cell.statValueField.textAlignment = .Right
         
         return cell
     }
@@ -93,13 +102,8 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        self.updateStatsFromTable()
     }
-    */
 }
