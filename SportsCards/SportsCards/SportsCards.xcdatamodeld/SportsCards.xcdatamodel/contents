@@ -5,7 +5,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="number" attributeType="String" syncable="YES"/>
         <relationship name="position" toMany="YES" deletionRule="Nullify" destinationEntity="Positions" inverseName="athlete" inverseEntity="Positions" syncable="YES"/>
-        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AthleteStats" inverseName="athlete" inverseEntity="AthleteStats" syncable="YES"/>
+        <relationship name="stats" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AthleteStats" inverseName="athlete" inverseEntity="AthleteStats" syncable="YES"/>
         <relationship name="team" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="athletes" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="AthleteStats" representedClassName="SportsCards.AthleteStats" syncable="YES">
