@@ -16,29 +16,20 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
     @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var newPosition: UITextField!
-
     @IBOutlet weak var positions: UITableView!
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    /* send through segue */
     var athleteName = ""
     var athleteNumber = ""
     var athleteEmail = ""
     var athletePositions = [String]()
-    
     var positionList = [String]()
-    
-    //var athletePositions = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.name.delegate = self
         self.number.delegate = self
@@ -49,15 +40,12 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
         view.addGestureRecognizer(tap)
         
         self.positions.registerClass(UITableViewCell.self, forCellReuseIdentifier: "TextInputCell")
-        
         positions.tableFooterView = UIView(frame: CGRectZero)
         
         positions.delegate = self
         positions.dataSource = self
         
         saveButton.enabled = false
-        
-        //positionList = ["Add Position +"]
     }
     
     @IBAction func submit(sender: AnyObject) {
@@ -82,10 +70,7 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
     func tableView(tableView:UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
         
         let cell = positions.dequeueReusableCellWithIdentifier("TextInputCell") as! UITableViewCell
-        
-        //cell.configure(text: "", placeholder: "Add Position +")
         cell.textLabel?.text = positionList[indexPath.row]
-        
         return cell
     }
     
@@ -117,7 +102,6 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
             athleteNumber = number.text
             athleteEmail = email.text
             athletePositions = positionList
-                        
         }
     }
     

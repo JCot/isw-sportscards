@@ -32,6 +32,10 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     
     var athletePickerHidden = true
     
+    /* send through segue */
+    var athletePhoto = UIImage()
+    var athleteName = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +62,6 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
         
-        
         self.getAthletes()
     }
     
@@ -69,8 +72,8 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     }
     
     @IBAction func selectAthleteImage(sender: AnyObject) {
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = .PhotoLibrary
+        //imagePicker.allowsEditing = true
+        imagePicker.sourceType = .Camera
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
@@ -80,6 +83,7 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         if let selectedShot = info[UIImagePickerControllerOriginalImage] as? UIImage {
             athleteImage.contentMode = .ScaleAspectFill
             athleteImage.image = selectedShot
+            generateButton.enabled = true
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -176,4 +180,21 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     @IBAction func cancel(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion:nil)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "createSegue" {
+            let cardDisplayVC = segue.destinationViewController as! CardDisplayViewController
+            
+            cardDisplayVC.photo = athleteImage.image!
+            cardDisplayVC.name = athleteSelectedLabel.text!
+            cardDisplayVC.descrip = blurb.text
+            
+            /*
+            athleteNumber = number.text
+            athletePositions = positionList
+            athleteStats = statsDict
+            */
+        }
+    }
+    
 }
