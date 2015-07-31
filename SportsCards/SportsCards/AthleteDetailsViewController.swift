@@ -12,10 +12,11 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
     
     var athlete: Athlete?
     var stats: [AthleteStats]?
-    @IBOutlet weak var athleteNameField: UITextField!
-    @IBOutlet weak var athleteNumberField: UITextField!
-    @IBOutlet weak var athletePositionsField: UITextField!
-    @IBOutlet weak var athleteDetailsTable: UITableView!
+    @IBOutlet var athleteNameField: UITextField!
+    @IBOutlet var athleteNumberField: UITextField!
+    @IBOutlet var athleteEmailField: UITextField!
+    @IBOutlet var athletePositionsField: UITextField!
+    @IBOutlet var athleteDetailsTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,25 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         
         athleteNameField.text = athlete?.name
         athleteNumberField.text = athlete?.number
+        athleteEmailField.text = athlete?.email
         
+        self.athleteDetailsTable.dataSource = self
+        self.athleteDetailsTable.delegate = self
+        
+        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        athleteNameField.text = athlete?.name
+        athleteNumberField.text = athlete?.number
+        athleteEmailField.text = athlete?.email
+        
+        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
+        self.athleteDetailsTable.reloadData()
+    }
+    
+    private func getPositionString() {
         var positions: [Positions]? = athlete?.position.allObjects as? [Positions]
         var positionsString = ""
         for var i = 0; i < positions?.count ?? 0; i++ {
@@ -36,16 +55,6 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         }
         
         athletePositionsField.text = positionsString
-        
-        self.athleteDetailsTable.dataSource = self
-        self.athleteDetailsTable.delegate = self
-        
-        stats = athlete?.stats?.allObjects as? [AthleteStats]
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +93,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         
         cell.statName.text = statInRow.teamStat.name
         cell.statValueField.text = String(stringInterpolationSegment: statInRow.value)
+        cell.statValueField.textAlignment = .Right
         
         return cell
     }

@@ -150,21 +150,29 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         {
             athlete.name = athleteDetailVC.athleteNameField.text
             athlete.number = athleteDetailVC.athleteNumberField.text
+            athlete.email = athleteDetailVC.athleteEmailField.text
+            
             let seguePositions = athleteDetailVC.athletePositionsField.text.componentsSeparatedByString(", ")
-            var newPositions: [Positions] = []
-            var existingPositions = athlete.position.allObjects as? [Positions]
-            var existingPositionNames = existingPositions?.map {
+            var existingPositions = athlete.position.allObjects as! [Positions]
+            var existingPositionNames = existingPositions.map {
                 (var position) -> String in
                 return position.position
             }
             for positionName in seguePositions {
-                if !contains(existingPositionNames!, positionName) {
+                if !contains(existingPositionNames, positionName) {
                     let newPosition = Positions.createInContext(context, position: positionName)
                     newPosition.athlete = NSSet(object: athlete)
-                    existingPositions?.append(newPosition)
+                    existingPositions.append(newPosition)
                 }
             }
-            athlete.position = NSSet(array: newPositions)
+            for positionName in existingPositionNames {
+                if !contains(seguePositions, positionName) {
+                    if let index = find(existingPositions.map{(var position) -> String in return position.position}, positionName) {
+                        existingPositions.removeAtIndex(index)
+                    }
+                }
+            }
+            athlete.position = NSSet(array: existingPositions)
             athlete.stats = NSSet(array: stats)
             
             self.context?.save(nil)
