@@ -11,7 +11,8 @@ import CoreData
 
 class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    // MARK: Properties
+    private let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var team: Team?
     var stats: [TeamStats]?
     private var keyboardMovedFrame: Bool = false
@@ -45,7 +46,7 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         if let image = self.team?.sportValue?.getImage() {
             self.imageViewSportPicker.image = image
         } else {
-            self.buttonPickSport.setTitle("⚪", forState: .Normal)
+            self.buttonPickSport.setTitle("Sport", forState: .Normal)
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
@@ -94,7 +95,7 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
     
     // MARK: Data Fetching
     private func getTeam() {
-        if let context = context {
+        if let context = self.context {
             let teams = Team.getFromContext(context)
             if teams?.count > 0 {
                 self.team = teams?[0]
@@ -132,10 +133,23 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         self.updateStatsFromTable()
         if let context = self.context {
             let newStat = TeamStats.createInContext(context, name: "", team: self.team)
+            updateAthletes(newStat)
             self.stats?.append(newStat)
             self.tableViewStats.reloadData()
             let currentCell = self.tableViewStats.cellForRowAtIndexPath(NSIndexPath(forRow: self.stats?.count ?? 0, inSection: 0)) as? EditableTableViewCell
             currentCell?.textField.becomeFirstResponder()
+        }
+    }
+    
+    private func updateAthletes(newStat: TeamStats){
+        if let athletes: [Athlete]? = team?.athletes?.allObjects as? [Athlete]{
+            for var i = 0; i < athletes?.count ?? 0; i++ {
+                var athlete = athletes?[i]
+                var currStats = athlete?.stats?.allObjects
+                var newAthleteStat = AthleteStats.createInContext(context!, value: 0.0, teamStat: newStat, athlete: athlete!)
+                currStats?.append(newAthleteStat)
+                athlete?.stats = NSSet(array: currStats!)
+            }
         }
     }
     
