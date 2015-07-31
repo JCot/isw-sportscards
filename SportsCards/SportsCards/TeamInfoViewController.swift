@@ -52,6 +52,12 @@ class TeamInfoViewController: UIViewController, UITextFieldDelegate, UITableView
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
     // MARK: Keyboard Manipulation
     func keyboardWillShow() {
         if !self.textFieldTeamName.editing {
