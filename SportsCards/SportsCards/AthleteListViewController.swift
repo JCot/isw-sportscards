@@ -212,7 +212,7 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
         } else if segue.identifier == "teamInfoSegue" {
             let navController = segue.destinationViewController as! UINavigationController
             let teamInfoVC = navController.topViewController as! TeamInfoViewController
-            teamInfoVC.team = self.team
+            teamInfoVC.team = self.team ?? Team.createInContext(context!, name: "", sport: nil)
             teamInfoVC.context = self.context
         }
     }
