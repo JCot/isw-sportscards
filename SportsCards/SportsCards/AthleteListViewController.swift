@@ -203,12 +203,17 @@ class AthleteListViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAthleteDetails" {
-            var navController = segue.destinationViewController as! UINavigationController
-            var showDetailVC = navController.topViewController as! AthleteDetailsViewController
+            let navController = segue.destinationViewController as! UINavigationController
+            let showDetailVC = navController.topViewController as! AthleteDetailsViewController
             let indexPath = self.athleteListView.indexPathForSelectedRow()
-            var row = indexPath?.row
-            var currentAthlete = athletes?[row!]
+            let row = indexPath?.row
+            let currentAthlete = athletes?[row!]
             showDetailVC.athlete = currentAthlete
+        } else if segue.identifier == "teamInfoSegue" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let teamInfoVC = navController.topViewController as! TeamInfoViewController
+            teamInfoVC.team = self.team
+            teamInfoVC.context = self.context
         }
     }
 }
