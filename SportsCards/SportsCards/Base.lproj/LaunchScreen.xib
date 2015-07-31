@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="240" width="240" height="240"/>
                     <color key="backgroundColor" red="0.10196078431372549" green="0.6705882352941176" blue="0.011764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="kBN-mI-33J">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="kBN-mI-33J">
                     <rect key="frame" x="90" y="90" width="300" height="300"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SportsCards" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
@@ -44,6 +44,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="hiH-u3-EnH" firstAttribute="height" secondItem="Fsu-0g-kr0" secondAttribute="height" id="2gt-kH-sMd"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="3fg-eI-9aH"/>
                 <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="1" id="5tZ-0w-X0K"/>
                 <constraint firstItem="rFA-eI-aqE" firstAttribute="trailing" secondItem="hiH-u3-EnH" secondAttribute="trailing" id="8qR-uA-Xsv"/>
@@ -52,6 +53,7 @@
                 <constraint firstItem="hiH-u3-EnH" firstAttribute="top" secondItem="rFA-eI-aqE" secondAttribute="bottom" id="BVd-FC-BSc"/>
                 <constraint firstItem="Fsu-0g-kr0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="D1S-eV-6m4"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="E65-6U-3u7"/>
+                <constraint firstItem="k2C-be-Suv" firstAttribute="height" secondItem="Fsu-0g-kr0" secondAttribute="height" id="KWw-Eo-yEr"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="10" id="Khp-ZH-bvo"/>
                 <constraint firstAttribute="bottom" secondItem="Fsu-0g-kr0" secondAttribute="bottom" constant="240" id="PfE-M4-NxV"/>
                 <constraint firstAttribute="trailing" secondItem="Fsu-0g-kr0" secondAttribute="trailing" constant="240" id="XFP-mg-jd9"/>
@@ -67,6 +69,7 @@
                 <constraint firstItem="k2C-be-Suv" firstAttribute="top" secondItem="Fsu-0g-kr0" secondAttribute="bottom" id="r7h-0m-AmC"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="k2C-be-Suv" secondAttribute="leading" id="rFb-nw-uO7"/>
                 <constraint firstItem="hiH-u3-EnH" firstAttribute="bottom" secondItem="k2C-be-Suv" secondAttribute="bottom" id="rgj-yd-kPK"/>
+                <constraint firstItem="rFA-eI-aqE" firstAttribute="height" secondItem="Fsu-0g-kr0" secondAttribute="height" id="tjK-91-RqN"/>
                 <constraint firstItem="Fsu-0g-kr0" firstAttribute="bottom" secondItem="rFA-eI-aqE" secondAttribute="bottom" id="tjQ-dY-gNZ"/>
                 <constraint firstItem="kBN-mI-33J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="z03-ae-WZJ"/>
                 <constraint firstItem="Fsu-0g-kr0" firstAttribute="trailing" secondItem="k2C-be-Suv" secondAttribute="trailing" id="zn3-HS-vfr"/>
