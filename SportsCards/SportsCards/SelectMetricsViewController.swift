@@ -8,12 +8,20 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 class SelectMetricsViewController : UITableViewController {
     
-    let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    var athleteStats: [AthleteStats]? = []
+    var stats: [AthleteStats] = []
+    var athlete: Athlete!
+    
+    let MAX_SELECTED = 4
+    var numSelected = 0
+    
+    var statsArr = [String]()
+    var valuesArr = [String]()
+    
+    var statsToDisplay = [String]()
+    var valuesToDisplay = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,28 +29,40 @@ class SelectMetricsViewController : UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        //self.getAthleteStats()
-    }
-    /*
-    private func getAthleteStats() {
-        if let context = context {
-            self.athleteStats = AthleteStats.getFromContext(context)
-        }
+        stats = (self.athlete.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats])!
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let statName = athleteStats?[indexPath.row].athlete.name ...
-        let statValue = athleteStats?[indexPath.row]. ...
-        //add selected row to ->selected array
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             if cell.accessoryType == .Checkmark
             {
+                numSelected--
                 cell.accessoryType = .None
             }
             else
             {
-                cell.accessoryType = .Checkmark
+                if(numSelected < MAX_SELECTED) {
+                    numSelected++
+                    cell.accessoryType = .Checkmark
+                }
+            }
+        }
+    }
+    
+    func getChecked()
+    {
+        for i in 0...tableView.numberOfSections()-1
+        {
+            for j in 0...tableView.numberOfRowsInSection(i)-1
+            {
+                if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: j, inSection: i)) {
+                    if cell.accessoryType == .Checkmark {
+                        statsArr.append(cell.textLabel!.text!)
+                        valuesArr.append(cell.detailTextLabel!.text!)
+                    }
+                }
+                
             }
         }
     }
@@ -52,20 +72,33 @@ class SelectMetricsViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rows = self.athleteStats?.count ?? 0
+        let rows = self.stats.count ?? 0
         return rows
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AthleteStatCell") as! UITableViewCell
         
-        cell.textLabel?.text = athleteStats?[indexPath.row].athlete.name // or something like this
-        cell.detailTextLabel!.text = athleteStats?[indexPath.row].value.stringValue
+        var row = indexPath.row
+        var statInRow: AthleteStats = stats[row] as AthleteStats
+        
+        cell.textLabel?.text = statInRow.teamStat.name
+        cell.detailTextLabel!.text = String(stringInterpolationSegment: statInRow.value)
+
         return cell
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
-*/
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+            
+            getChecked()
+            statsToDisplay = statsArr
+            valuesToDisplay = valuesArr
+        
+    }
+    
+    
 }
