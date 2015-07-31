@@ -41,7 +41,7 @@ class AddAthleteViewController: UIViewController, UITextFieldDelegate, UITableVi
         
         self.positions.registerClass(UITableViewCell.self, forCellReuseIdentifier: "TextInputCell")
         positions.tableFooterView = UIView(frame: CGRectZero)
-        
+                
         positions.delegate = self
         positions.dataSource = self
         

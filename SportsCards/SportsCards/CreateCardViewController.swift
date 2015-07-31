@@ -14,6 +14,8 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var athletes: [Athlete]? = []
+    var athlete: Athlete?
+    var team: Team?
 
     @IBOutlet weak var paramsTableView: UITableView!
     
@@ -29,12 +31,19 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     @IBOutlet weak var generateButton: UIBarButtonItem!
     
     let imagePicker = UIImagePickerController()
-    
+
     var athletePickerHidden = true
+    var imageUploaded = false
     
     /* send through segue */
     var athletePhoto = UIImage()
     var athleteName = ""
+    var positions = ""
+    var athleteNumber = ""
+    
+    /* get from segue */
+    var statsArr = [String]()
+    var valuesArr = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +72,7 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         tap.cancelsTouchesInView = false
         
         self.getAthletes()
+        self.getTeam()
     }
     
     private func getAthletes() {
@@ -71,11 +81,65 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         }
     }
     
+    private func getTeam() {
+        if let context = self.context {
+            let teams = Team.getFromContext(context)
+            if teams?.count > 0 {
+                self.team = teams?[0]
+            }
+        }
+    }
+    
+    private func getSelectedAthleteData() {
+        var pos: [Positions]? = athlete?.position.sortedArrayUsingDescriptors([NSSortDescriptor(key: "position", ascending: true)]) as? [Positions]
+        for var i = 0; i < pos?.count ?? 0; i++ {
+            positions += pos?[i].position ?? ""
+            
+            if(i < (pos?.count ?? 0) - 1){
+                positions += ", "
+            }
+        }
+        athleteNumber = athlete!.number
+    }
+
+    
     @IBAction func selectAthleteImage(sender: AnyObject) {
-        //imagePicker.allowsEditing = true
-        imagePicker.sourceType = .Camera
         
-        presentViewController(imagePicker, animated: true, completion: nil)
+        var sourceMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+        
+        //imagePicker.allowsEditing = true
+
+        
+        let cameraAction = UIAlertAction(title: "Take new photo", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in self.takeNewPicture()
+        })
+        
+        let libraryAction = UIAlertAction(title: "Import existing photo", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in self.importOldPicture()
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+        }
+        
+        sourceMenu.addAction(cameraAction)
+        sourceMenu.addAction(libraryAction)
+        sourceMenu.addAction(cancelAction)
+        
+        self.presentViewController(sourceMenu, animated: true, completion: nil)
+        
+    }
+    
+    func takeNewPicture (){
+        self.imagePicker.sourceType = .Camera
+        presentViewController(self.imagePicker, animated: true, completion: nil)
+
+    }
+    
+    func importOldPicture (){
+        self.imagePicker.sourceType = .PhotoLibrary
+        presentViewController(self.imagePicker, animated: true, completion: nil)
+
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
@@ -83,7 +147,12 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         if let selectedShot = info[UIImagePickerControllerOriginalImage] as? UIImage {
             athleteImage.contentMode = .ScaleAspectFill
             athleteImage.image = selectedShot
-            generateButton.enabled = true
+            
+            imageUploaded = true
+            
+            if (imageUploaded && (athlete != nil) && (statsArr.count != 0) && (blurb != "")){
+                generateButton.enabled = true
+            }
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -111,6 +180,12 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     {
         athleteSelectedLabel.text = athletes?[row].name
         athleteSelectedLabel.textColor = UIColor.blackColor()
+        
+        athlete = athletes?[row]
+        
+        if (imageUploaded && (athlete != nil) && (statsArr.count != 0) && (blurb != "")){
+            generateButton.enabled = true
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -131,8 +206,8 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             }
         }
-        else if indexPath.section == 1 && indexPath.row == 0{
-            performSegueWithIdentifier("needToSelectMetrics", sender: nil)
+        else if indexPath.section == 1 && indexPath.row == 0 && athlete != nil {
+            performSegueWithIdentifier("needToSelectMetrics", sender: CreateCardViewController.self)
         }
     }
     
@@ -155,7 +230,7 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
         }
         
         var len = count(text)
-        return count(blurb.text) + (len - range.length) <= 140;
+        return count(blurb.text) + (len - range.length) <= 75;
     }
     
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
@@ -182,18 +257,39 @@ class CreateCardViewController: UITableViewController, UITextViewDelegate, UIIma
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        self.getSelectedAthleteData()
+        
+        if segue.identifier == "needToSelectMetrics" {
+            
+            var navController = segue.destinationViewController as! UINavigationController
+            let selectMetricsVC = navController.topViewController as! SelectMetricsViewController
+            
+            selectMetricsVC.athlete = athlete!
+        }
+
         if segue.identifier == "createSegue" {
+            
             let cardDisplayVC = segue.destinationViewController as! CardDisplayViewController
             
             cardDisplayVC.photo = athleteImage.image!
             cardDisplayVC.name = athleteSelectedLabel.text!
             cardDisplayVC.descrip = blurb.text
-            
-            /*
-            athleteNumber = number.text
-            athletePositions = positionList
-            athleteStats = statsDict
-            */
+            cardDisplayVC.team = team!.name
+            cardDisplayVC.positions = positions
+            cardDisplayVC.number = athleteNumber
+            cardDisplayVC.statsArr = statsArr
+            cardDisplayVC.valuesArr = valuesArr
+        }
+        
+    }
+    
+    @IBAction func returnFromStatSelection(segue:UIStoryboardSegue) {
+        var selectMetricsVC = segue.sourceViewController as! SelectMetricsViewController
+        statsArr = selectMetricsVC.statsArr
+        valuesArr = selectMetricsVC.valuesArr
+        
+        if (imageUploaded && (athlete != nil) && (statsArr.count != 0) && (blurb != "")){
+            generateButton.enabled = true
         }
     }
     
