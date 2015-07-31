@@ -30,6 +30,7 @@
             <string>LeagueGothic-Regular</string>
             <string>LeagueGothic-Regular</string>
             <string>LeagueGothic-Regular</string>
+            <string>LeagueGothic-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -304,13 +305,13 @@
                                                         <constraint firstAttribute="width" constant="40" id="uEc-5j-vbW"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="22"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.098039215690000001" green="0.16862745100000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUg-Px-4an">
                                                     <rect key="frame" x="68" y="7" width="514" height="36"/>
                                                     <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="30"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.098039215690000001" green="0.16862745100000001" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -341,8 +342,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fYG-h0-QpK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="30"/>
                                 <state key="normal" title="Card Creator">
+                                    <color key="titleColor" red="0.94901960780000005" green="0.30196078430000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1003,6 +1005,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ecr-ip-8G8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.30196078430000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1106,7 +1109,7 @@
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MlU-V7-KMi">
                                         <rect key="frame" x="20" y="42" width="98" height="36"/>
-                                        <color key="textColor" red="0.096884539800000002" green="0.16783934449999999" blue="0.39075033419999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.098039215686274508" green="0.16862745098039217" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="LeagueGothic-Regular" family="League Gothic" pointSize="30"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -1237,6 +1240,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RNA-bc-onZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.30196078430000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1255,6 +1259,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dkm-Tm-eJB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.30196078430000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1273,6 +1278,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XJY-di-UFo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.30196078430000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1291,6 +1297,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9w-aM-sUN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.30196078430000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1309,6 +1316,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5MO-v9-o4e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.30196078430000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
