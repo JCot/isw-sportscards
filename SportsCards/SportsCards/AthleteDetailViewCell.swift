@@ -10,7 +10,8 @@ import UIKit
 
 class AthleteDetailViewCell: UITableViewCell {
 
-    @IBOutlet weak var statNameLabel: UILabel!
+    @IBOutlet weak var statName: UILabel!
     @IBOutlet weak var statValueField: UITextField!
+    
 
 }

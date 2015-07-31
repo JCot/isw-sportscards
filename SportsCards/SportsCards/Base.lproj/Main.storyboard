@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="159" width="600" height="441"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatValueCell" id="hly-Jb-kAh">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatValueCell" id="hly-Jb-kAh" customClass="AthleteDetailViewCell" customModule="SportsCards" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="center" tableViewCell="hly-Jb-kAh" id="HMw-f1-i4k">
@@ -40,6 +40,10 @@
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="statName" destination="G9X-RC-OaA" id="Uud-Uz-L6t"/>
+                                            <outlet property="statValueField" destination="Rjl-MB-j7g" id="dEL-4U-HjE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -92,6 +96,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="athleteDetailsTable" destination="x9b-d1-Jb5" id="T6s-uB-xaF"/>
                         <outlet property="athleteNameField" destination="kJr-0g-fyC" id="Ij3-4i-oKP"/>
                         <outlet property="athleteNumberField" destination="FWg-tn-bpL" id="jf8-X5-vy9"/>
                         <outlet property="athletePositionsField" destination="vp3-Ub-iy1" id="f0T-QJ-a7z"/>
@@ -100,7 +105,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOe-Cx-dEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8ju-05-15s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4103" y="-573"/>
+            <point key="canvasLocation" x="4147" y="-1163"/>
         </scene>
         <!--Athlete List-->
         <scene sceneID="kwV-7l-2aM">
@@ -194,23 +199,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Jersey No." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-Qt-z2d">
-                                <rect key="frame" x="36" y="140" width="528" height="36"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="jersey no." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-Qt-z2d">
+                                <rect key="frame" x="158" y="132" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2fS-Oc-ix7">
-                                <rect key="frame" x="36" y="191" width="528" height="36"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2fS-Oc-ix7">
+                                <rect key="frame" x="158" y="177" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdg-MQ-Zu5">
-                                <rect key="frame" x="36" y="89" width="528" height="36"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="athlete name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdg-MQ-Zu5">
+                                <rect key="frame" x="158" y="89" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qmE-9h-jjn">
-                                <rect key="frame" x="36" y="332" width="528" height="269"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qmE-9h-jjn">
+                                <rect key="frame" x="0.0" y="333" width="600" height="267"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextInputCell" id="oFW-L3-gCy" customClass="TextInputTableViewCell" customModule="SportsCards" customModuleProvider="target">
@@ -226,19 +231,19 @@
                                     <outlet property="delegate" destination="Gdq-iL-7bq" id="ndm-SK-har"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player's Positions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-88-Iv9">
-                                <rect key="frame" x="36" y="277" width="528" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player's Positions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-88-Iv9">
+                                <rect key="frame" x="158" y="244" width="239" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ex. 3B, C, P, OF" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14M-oD-asu">
-                                <rect key="frame" x="36" y="303" width="143" height="24"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="enter position 3B, C, P, OF" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14M-oD-asu">
+                                <rect key="frame" x="158" y="275" width="247" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9p-8Z-OSz">
-                                <rect key="frame" x="542" y="304" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9p-8Z-OSz">
+                                <rect key="frame" x="420" y="289" width="22" height="22"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -249,25 +254,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="x9p-8Z-OSz" secondAttribute="trailing" constant="20" id="07O-re-1C0"/>
                             <constraint firstItem="14M-oD-asu" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="0NT-zZ-8tT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qmE-9h-jjn" secondAttribute="trailing" constant="20" id="4EV-99-E0m"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vdg-MQ-Zu5" secondAttribute="trailing" constant="20" id="ABP-wZ-vYX"/>
-                            <constraint firstItem="2fS-Oc-ix7" firstAttribute="top" secondItem="eNs-Qt-z2d" secondAttribute="bottom" constant="15" id="H9d-nE-gsD"/>
                             <constraint firstItem="2qA-88-Iv9" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="IVy-rZ-scR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2fS-Oc-ix7" secondAttribute="trailing" constant="20" id="KBq-uO-bRA"/>
-                            <constraint firstItem="vdg-MQ-Zu5" firstAttribute="top" secondItem="fjz-M0-pRB" secondAttribute="bottom" constant="25" id="NFL-hg-Y3C"/>
+                            <constraint firstItem="x9p-8Z-OSz" firstAttribute="leading" secondItem="14M-oD-asu" secondAttribute="trailing" constant="20" id="Mm4-2C-1JU"/>
                             <constraint firstItem="2fS-Oc-ix7" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="UPY-Ke-9wQ"/>
-                            <constraint firstItem="O2r-AL-WqS" firstAttribute="top" secondItem="qmE-9h-jjn" secondAttribute="bottom" id="Wmy-b0-Fwz"/>
-                            <constraint firstAttribute="centerX" secondItem="qmE-9h-jjn" secondAttribute="centerX" id="aCO-On-37m"/>
                             <constraint firstItem="eNs-Qt-z2d" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="aiP-ry-ydX"/>
-                            <constraint firstItem="x9p-8Z-OSz" firstAttribute="centerY" secondItem="14M-oD-asu" secondAttribute="centerY" id="bnN-9I-umx"/>
-                            <constraint firstItem="eNs-Qt-z2d" firstAttribute="top" secondItem="vdg-MQ-Zu5" secondAttribute="bottom" constant="15" id="gB7-y4-xBl"/>
-                            <constraint firstItem="2qA-88-Iv9" firstAttribute="top" secondItem="2fS-Oc-ix7" secondAttribute="bottom" constant="50" id="lk2-Hp-bHM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x9p-8Z-OSz" secondAttribute="trailing" constant="20" id="fT3-Zr-RJ4"/>
                             <constraint firstItem="qmE-9h-jjn" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="mwj-8f-inJ"/>
-                            <constraint firstItem="qmE-9h-jjn" firstAttribute="top" secondItem="14M-oD-asu" secondAttribute="bottom" constant="5" id="nA6-HW-mdd"/>
                             <constraint firstItem="vdg-MQ-Zu5" firstAttribute="leading" secondItem="3ch-Pb-jWG" secondAttribute="leadingMargin" constant="20" id="tzj-rZ-JSa"/>
-                            <constraint firstItem="14M-oD-asu" firstAttribute="top" secondItem="2qA-88-Iv9" secondAttribute="bottom" constant="5" id="uzy-Cz-GjD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eNs-Qt-z2d" secondAttribute="trailing" constant="20" id="vXi-tv-3ci"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2qA-88-Iv9" secondAttribute="trailing" constant="20" id="zLL-rG-Dmp"/>
                         </constraints>
@@ -635,8 +632,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bvh-2p-0Q8" id="Sp6-XF-fCu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Stat Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-vz-0gh">
-                                                    <rect key="frame" x="18" y="13" width="584" height="17"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Statistic Abbreviation" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-vz-0gh">
+                                                    <rect key="frame" x="18" y="8" width="584" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
@@ -712,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZl-zj-bCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4140" y="-474"/>
+            <point key="canvasLocation" x="4154" y="-450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DsO-Cu-cid">
@@ -748,7 +745,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPd-Up-3kW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3412" y="-474"/>
+            <point key="canvasLocation" x="3412" y="-450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Il-dC-Sje">
@@ -802,7 +799,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1Y-6c-Quv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3291" y="-573"/>
+            <point key="canvasLocation" x="3412" y="-1163"/>
         </scene>
     </scenes>
 </document>

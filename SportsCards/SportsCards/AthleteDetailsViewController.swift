@@ -11,9 +11,11 @@ import UIKit
 class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var athlete: Athlete?
+    var stats: [AthleteStats]?
     @IBOutlet weak var athleteNameField: UITextField!
     @IBOutlet weak var athleteNumberField: UITextField!
     @IBOutlet weak var athletePositionsField: UITextField!
+    @IBOutlet weak var athleteDetailsTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,27 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         athleteNameField.text = athlete?.name
         athleteNumberField.text = athlete?.number
         
+        var positions: [Positions]? = athlete?.position.allObjects as? [Positions]
+        var positionsString = ""
+        for var i = 0; i < positions?.count ?? 0; i++ {
+            positionsString += positions?[i].position ?? ""
+            
+            if(i < (positions?.count ?? 0) - 2){
+                positionsString += ", "
+            }
+        }
+        
+        athletePositionsField.text = positionsString
+        
+        self.athleteDetailsTable.dataSource = self
+        self.athleteDetailsTable.delegate = self
+        
+        stats = athlete?.stats?.allObjects as? [AthleteStats]
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.stats = self.athlete?.stats?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "teamStat.name", ascending: true)]) as? [AthleteStats]
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,12 +53,26 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         // Dispose of any resources that can be recreated.
     }
     
+    // super janky way of making changes, but it works for the time being
+    private func updateStatsFromTable() {
+        if let stats = self.stats {
+            for i in 0..<stats.count {
+                let cell = self.athleteDetailsTable.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? AthleteDetailViewCell
+                let valueString = cell?.statValueField.text ?? ""
+                let newValue = NSString(string: valueString).doubleValue
+                if newValue != stats[i].value {
+                    stats[i].value = newValue
+                }
+            }
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rows = self.athlete?.stats?.count ?? 0
+        let rows = self.stats?.count ?? 0
         return rows
     }
     
@@ -45,7 +82,7 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         var allStats = athlete?.stats?.allObjects
         var statInRow: AthleteStats = allStats?[row] as! AthleteStats
         
-        cell.statNameLabel.text = statInRow.teamStat.name
+        cell.statName.text = statInRow.teamStat.name
         cell.statValueField.text = String(stringInterpolationSegment: statInRow.value)
         
         return cell
@@ -65,5 +102,4 @@ class AthleteDetailsViewController: UIViewController, UITableViewDataSource, UIT
         // Pass the selected object to the new view controller.
     }
     */
-
 }
